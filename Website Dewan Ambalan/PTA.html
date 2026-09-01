@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerimaan Tamu Ambalan - Ambalan Pagusti</title>
+
+    <style>
+        /* ==========================================
+           1. RESET & CSS UTAMA
+           ========================================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #222;
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #4A2E10;   /* Coklat Tua */
+            --secondary-color: #D2B48C; /* Coklat Muda */
+            --accent-color: #8B4513;    /* Coklat Khas */
+            --light-bg: #F9F6F0;       /* Krem Muda */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           2. NAVBAR
+           ========================================== */
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .btn-kembali {
+            color: white;
+            text-decoration: none;
+            background-color: var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-kembali:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* ==========================================
+           3. HERO BANNER
+           ========================================== */
+        .page-banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('foto1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 140px 20px 60px 20px;
+        }
+
+        .page-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-banner p {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* ==========================================
+           4. KONTEN (PENJELASAN & VIDEO)
+           ========================================== */
+        .content-section {
+            padding: 60px 5% 80px 5%;
+        }
+
+        .detail-teks {
+            max-width: 850px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+        }
+
+        .detail-teks p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* VIDEO YOUTUBE (1 VIDEO DI TENGAH) */
+        .video-single-container {
+            max-width: 850px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .video-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-caption {
+            padding: 18px 20px;
+            background-color: #ffffff;
+            text-align: center;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .video-caption h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .page-banner h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ==========================================
+           5. FOOTER
+           ========================================== */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.8;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-top: 15px;
+        }
+
+        /* ANIMASI REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">Ambalan Pagusti</a>
+            <a href="index.html#program" class="btn-kembali">← Kembali</a>
+        </nav>
+    </header>
+
+    <div class="page-banner">
+        <h1 class="reveal">Penerimaan Tamu Ambalan</h1>
+        <p class="reveal">Program Kerja Utama Dewan Ambalan Pagusti</p>
+    </div>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title reveal">Tentang Kegiatan</h2>
+            
+            <div class="detail-teks reveal">
+                <p>
+                    Penerimaan Tamu Ambalan (PTA) adalah gerbang awal perpindahan peserta didik dari jenjang Penggalang menuju jenjang Penegak. Kegiatan ini bertujuan untuk memperkenalkan tradisi ambalan, adat istiadat, struktur pangkalan, serta membangun kebanggaan menjadi bagian dari keluarga besar Ambalan Pagusti.
+                </p>
+            </div>
+
+            <div class="video-single-container reveal">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/pK71JzPZddk?si=d1gVbnrXN37VoBId" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption">
+                        <h4>Dokumentasi Resmi Kegiatan Pengembaraan & Pelantikan Bantara</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content reveal">
+            <p><strong>Dewan Ambalan Pagusti</strong></p>
+            <p>Gugusdepan Ambalan Penegak - Pangkalan SMA/SMK...</p>
+            <p>Instagram: @ambalan.pagusti | Email: pagusti@example.com</p>
+            <p class="copyright">&copy; 2026 Dewan Ambalan Pagusti. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function checkScroll() {
+            let reveals = document.querySelectorAll('.reveal');
+            let windowHeight = window.innerHeight;
+            let elementVisible = 100;
+
+            reveals.forEach(element => {
+                let elementTop = element.getBoundingClientRect().top;
+                let elementBottom = element.getBoundingClientRect().bottom;
+
+                if (elementTop < windowHeight - elementVisible && elementBottom > 0) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
