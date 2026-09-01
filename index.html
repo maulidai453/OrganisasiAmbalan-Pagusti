@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dewan Ambalan Pagusti - Website Resmi</title>
+
+    <style>
+        /* ==========================================
+           1. RESET & CSS UTAMA
+           ========================================== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #222;
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-color: #4A2E10;   /* Coklat Tua */
+            --secondary-color: #D2B48C; /* Coklat Muda / Aksesori */
+            --accent-color: #8B4513;    /* Coklat Khas */
+            --light-bg: #F9F6F0;       /* Krem Muda */
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 5% 60px 5%;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .bg-light {
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            color: #000;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            font-weight: bold;
+        }
+
+        /* ==========================================
+           2. NAVBAR FIXED (TANPA MENU KONTAK)
+           ========================================== */
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            background-color: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        /* ==========================================
+           3. HERO SECTION (SLIDESHOW BACKGROUND)
+           ========================================== */
+        .hero-section {
+            position: relative;
+            text-align: center;
+            color: white;
+            animation: gantiBackground 15s infinite;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #c09f74;
+        }
+
+        @keyframes gantiBackground {
+            0%, 30% { background-image: url('foto bg 1.JPEG'); }
+            33%, 63% { background-image: url('foto bg 2.JPG'); }
+            66%, 96% { background-image: url('foto bg 3.JPEG'); }
+            100% { background-image: url('foto bg 1.JPEG'); }
+        }
+
+        /* ==========================================
+           4. TENTANG KAMI (BERTUMPUK)
+           ========================================== */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .about-foto {
+            width: 100%;
+            max-width: 950px;
+            margin-bottom: 30px;
+        }
+
+        .about-foto img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-teks {
+            width: 100%;
+            max-width: 950px;
+        }
+
+        .about-teks p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+        }
+
+        /* ==========================================
+           5. MAKNA LOGO
+           ========================================== */
+        .split-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .split-layout.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .logo-box {
+            flex: 1;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-box img {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .text-box {
+            flex: 1;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* ==========================================
+           6. GLADIAN (GALERI FOTO)
+           ========================================== */
+        .gladian-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .gladian-item {
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .gladian-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gladian-item img:hover {
+            transform: scale(1.08);
+        }
+
+        /* ==========================================
+           7. PROGRAM KERJA UTAMA (4 CARDS)
+           ========================================== */
+        .program-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .program-card {
+            background-color: #000;
+            color: #ffffff !important;
+            height: 200px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #ffffff !important;
+        }
+
+        .program-card p {
+            font-size: 0.95rem;
+            color: #ccc !important;
+        }
+
+        /* ==========================================
+           8. PROGJA PARTISIPASI
+           ========================================== */
+        .partisipasi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .partisipasi-card {
+            background: linear-gradient(135deg, #4A2E10 0%, #2D1B08 100%);
+            color: #ffffff;
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 46, 16, 0.15);
+        }
+
+        .partisipasi-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(74, 46, 16, 0.3);
+        }
+
+        .partisipasi-badge {
+            align-self: flex-start;
+            background-color: rgba(210, 180, 140, 0.2);
+            color: var(--secondary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .partisipasi-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .partisipasi-card p {
+            font-size: 0.92rem;
+            color: #e0d5c8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .partisipasi-foto {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .partisipasi-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .partisipasi-card:hover .partisipasi-foto img {
+            transform: scale(1.05);
+        }
+
+        /* ==========================================
+           9. FOOTER DENGAN INFORMASI KONTAK LENGKAP
+           ========================================== */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1.8;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-top: 15px;
+        }
+
+        /* ==========================================
+           10. ANIMASI JAVASCRIPT
+           ========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Ambalan Pagusti</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#makna-logo">Makna Logo</a></li>
+                <li><a href="#gladian">Galeri</a></li>
+                <li><a href="#program">Program Kerja</a></li>
+                <li><a href="#progja-partisipasi">Kegiatan Partisipasi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content reveal">
+            <h1>Parang Gupita Puspita Murti</h1>
+            <p>Satu Pramuka untuk Satu Indonesia — Bawa Perubahan, Wujudkan Prestasi.</p>
+            <a href="#about" class="btn-primary">Jelajahi Profil</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title reveal">Tentang Kami</h2>
+            
+            <div class="about-container">
+                <div class="about-foto reveal">
+                    <img src="tentang kami.jpeg" alt="Foto Dewan Ambalan Pagusti">
+                </div>
+
+                <div class="about-teks reveal">
+                    <p>
+                        Dewan Ambalan Pagusti merupakan wadah pembinaan kepemimpinan Penegak di pangkalan kami. 
+                        Kami berkomitmen untuk membentuk generasi muda yang berkarakter, mandiri, berprestasi, 
+                        serta siap berbakti kepada masyarakat dan bangsa melalui berbagai kegiatan kepramukaan 
+                        yang edukatif dan menyenangkan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="makna-logo" class="bg-light">
+        <div class="container">
+            <h2 class="section-title reveal">Makna Logo</h2>
+            <div class="split-layout reverse">
+                <div class="logo-box reveal">
+                    <img src="logo pagusti.jpg" alt="Logo Ambalan">
+                </div>
+                <div class="text-box reveal">
+                    <p><strong>Warna Dasar (Kuning) :</strong> Harapan dan Kesejahteraan.</p>
+                    <p><strong>Bentuk Logo (Segi lima) :</strong> Melambangkan Pancasila.</p>
+                    <p><strong>Warna Hitam :</strong> Abadi, Intelektual, dan Wibawa.</p>
+                    <p><strong>Padi dan Kapas :</strong> Kemakmuran.</p>
+                    <p><strong>Warna Putih :</strong> Kesucian, tulang, tingginya daya rasa, Karsa dan Cipta.</p>
+                    <p><strong>Warna Coklat :</strong> Lambang Kwarda Jawa Tengah yang berarti Kemakmuran.</p>
+                    <p><strong>Warna Merah :</strong> Pengabdian hingga titik darah penghabisan seperti darah mengalir.</p>
+                    <p><strong>Tunas Kelapa :</strong> Lambang Penegak yang berarti Pramuka Penegak.</p>
+                    <p><strong>Bintang :</strong> Sudah dapat membedakan yang baik dan buruk. Menjadi Tunas Bangsa dan Negara serta Serbaguna.</p>
+                    <p><strong>Parang Gupita :</strong> Kecerdasan, Ksatria, Kreativitas dan Inovatif.</p>
+                    <p><strong>Puspita Murti :</strong> Kelembutan serta mempererat persahabatan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gladian">
+        <div class="container">
+            <h2 class="section-title reveal">Gladian Pramuka</h2>
+            <div class="gladian-grid">
+                <div class="gladian-item reveal"><img src="gladian 1.jpeg" alt="Kegiatan 1"></div>
+                <div class="gladian-item reveal"><img src="gladian 2.jpeg" alt="Kegiatan 2"></div>
+                <div class="gladian-item reveal"><img src="gladian 3.jpeg" alt="Kegiatan 3"></div>
+                <div class="gladian-item reveal"><img src="gladian 5.jpeg" alt="Kegiatan 4"></div>
+                <div class="gladian-item reveal"><img src="gladian 6.jpeg" alt="Kegiatan 5"></div>
+                <div class="gladian-item reveal"><img src="gladian 7.jpeg" alt="Kegiatan 6"></div>
+                <div class="gladian-item reveal"><img src="gladian 8.jpeg" alt="Kegiatan 7"></div>
+                <div class="gladian-item reveal"><img src="gladian 9.jpeg" alt="Kegiatan 8"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="program" class="bg-light">
+        <div class="container">
+            <h2 class="section-title reveal">Program Kerja</h2>
+            
+            <div class="program-grid">
+                <a href="Barapinsantara.html" class="program-card-link reveal">
+                    <div class="program-card">
+                        <h3>Pengembaraan Pimpinan Sangga & Pelantikan Bantara</h3>
+                        <p>Penyambutan dan pengukuhan anggota baru Penegak Bantara.</p>
+                    </div>
+                </a>
+
+                <a href="PSC&KAT.html" class="program-card-link reveal">
+                    <div class="program-card">
+                        <h3>Pagusti Scout Competition & Kemah Akhir Tahun</h3>
+                        <p>Ajang kompetisi dan kegiatan perkemahan penutup tahun.</p>
+                    </div>
+                </a>
+
+                <a href="PTA.html" class="program-card-link reveal">
+                    <div class="program-card">
+                        <h3>Penerimaan Tamu Ambalan</h3>
+                        <p>Penyambutan calon anggota baru Ambalan Pagusti.</p>
+                    </div>
+                </a>
+
+                <a href="PCP&Harprak.html" class="program-card-link reveal">
+                    <div class="program-card">
+                        <h3>Pengukuhan Calon Penegak & Hari Pramuka</h3>
+                        <p>Peringatan Hari Pramuka serta pengukuhan anggota.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="progja-partisipasi">
+        <div class="container">
+            <h2 class="section-title reveal">Kegiatan Partisipasi</h2>
+            
+            <div class="partisipasi-grid">
+                <div class="partisipasi-card reveal">
+                    <div>
+                        <span class="partisipasi-badge">Kwarcab</span>
+                        <h3>Jamboree on the Air (JOTA) dan Jamboree on the Internet (JOTI)</h3>
+                        <p>menghubungkan anggota Pramuka secara global tanpa harus bertatap muka langsung.</p>
+                    </div>
+                    <div class="partisipasi-foto">
+                        <img src="jota joti.jpeg" alt="Foto Raimuna">
+                    </div>
+                </div>
+
+                <div class="partisipasi-card reveal">
+                    <div>
+                        <span class="partisipasi-badge">SMKN 1 Klaten</span>
+                        <h3>Padma Birawa Rover Scout Competition</h3>
+                        <p>ajang kompetisi kepramukaan tingkat kabupaten bagi Pramuka Penegak dan Pandega.</p>
+                    </div>
+                    <div class="partisipasi-foto">
+                        <img src="pbrc.jpeg" alt="Foto Karya Bakti">
+                    </div>
+                </div>
+
+                <div class="partisipasi-card reveal">
+                    <div>
+                        <span class="partisipasi-badge">Lap Krecek, Delanggu</span>
+                        <h3>Lomba Alam Padma Birawa</h3>
+                        <p>sebuah kegiatan perkemahan dan lomba lintas alam yang diadakan khusus bagi anggota Pramuka Penegak.</p>
+                    </div>
+                    <div class="partisipasi-foto">
+                        <img src="lapb.jpeg" alt="Foto Musppanitra">
+                    </div>
+                </div>
+
+                <div class="partisipasi-card reveal">
+                    <div>
+                        <span class="partisipasi-badge">Kopi Lawang Pari</span>
+                        <h3>Anjangsana-Anjangsini</h3>
+                        <p>kegiatan saling berkunjung dan bersilaturahmi antar-gugus depan atau pangkalan Pramuka untuk mempererat persaudaraan, bertukar pikiran, dan berbagi pengalaman tentang kegiatan kepramukaan.</p>
+                    </div>
+                    <div class="partisipasi-foto">
+                        <img src="angjangsana-anjangsini.jpeg" alt="Foto Upacara">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content reveal">
+            <p><strong>Dewan Ambalan Pagusti</strong></p>
+            <p>Gugusdepan 26-051/26-052 - Pangkalan SMK Negeri 1 Klaten</p>
+            <p>Instagram: @id.pagusti | Tiktok: @ID.PAGUSTI</p>
+            <p class="copyright">&copy; 2026 Dewan Ambalan Pagusti. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function checkScroll() {
+            let reveals = document.querySelectorAll('.reveal');
+            let windowHeight = window.innerHeight;
+            let elementVisible = 120;
+
+            reveals.forEach(element => {
+                let elementTop = element.getBoundingClientRect().top;
+                let elementBottom = element.getBoundingClientRect().bottom;
+
+                if (elementTop < windowHeight - elementVisible && elementBottom > 0) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
