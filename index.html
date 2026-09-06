@@ -21,7 +21,6 @@
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
     .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
     
-    /* Tambahan efek transisi halus pada hero section */
     .hero { 
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('foto bg 2.JPG') center/cover; 
       height: 60vh; 
@@ -31,7 +30,6 @@
       text-align: center; 
       color: white; 
       padding: 0 20px;
-      transition: background-image 1s ease-in-out; /* Efek transisi antar gambar */
     }
     
     .btn-hero { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d7ccc8; color: #3e2723; text-decoration: none; font-weight: bold; border-radius: 4px; }
@@ -39,7 +37,6 @@
     .welcome-section { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
     .welcome-section h2 { color: #3e2723; margin-bottom: 10px; }
 
-    /* Footer CSS */
     footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 50px; font-size: 0.95rem; }
     .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
     .footer-section { flex: 1; min-width: 280px; }
@@ -89,8 +86,7 @@
     </div>
   </nav>
 
-  <!-- Ditambahkan id="hero-header" -->
-  <header class="hero" id="hero-header">
+  <header class="hero">
     <div class="hero-content">
       <h1>Parang Gupita Puspita Murti</h1>
       <p>Satu Pramuka untuk Satu Indonesia — Bawa Perubahan, Wujudkan Prestasi.</p>
@@ -108,9 +104,9 @@
   <footer>
     <div class="footer-container">
       <div class="footer-section">
-        <h3 class="footer-title">Kantor</h3>
+        <h3 class="footer-title">Pangkalan</h3>
         <p>
-          <strong>AMBALAN PAGUSTI</strong><br>
+          <strong>GUDEP 26-051/26-052</strong><br>
           SMK NEGERI 1 KLATEN<br>
           Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
         </p>
@@ -130,28 +126,6 @@
     </div>
   </footer>
 
-  <script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-
-    // --- SCRIPT PERGANTIAN BACKGROUND ---
-    // Masukkan nama-nama file foto kamu di dalam array di bawah ini:
-    const backgroundImages = [
-      'foto bg 2.JPG',
-      'fotobackground-2.jpeg', // ganti dengan nama file foto kedua
-      'foto bg 3.jpeg'  // ganti dengan nama file foto ketiga
-    ];
-
-    let currentBgIndex = 0;
-    const heroHeader = document.getElementById('hero-header');
-
-    function changeHeroBackground() {
-      currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
-      // Tetap menjaga efek lapisan gelap (linear-gradient) agar teks tetap terbaca
-      heroHeader.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${backgroundImages[currentBgIndex]}')`;
-    }
-
-    // Berganti foto setiap 5 detik (5000ms)
-    setInterval(changeHeroBackground, 5000);
-  </script>
+  <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
 </body>
 </html>
