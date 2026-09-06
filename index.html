@@ -20,7 +20,20 @@
     .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
     .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
-    .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fotobackground-1.jpeg') center/cover; height: 60vh; display: flex; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px; }
+    
+    /* Tambahan efek transisi halus pada hero section */
+    .hero { 
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fotobackground-1.jpeg') center/cover; 
+      height: 60vh; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      text-align: center; 
+      color: white; 
+      padding: 0 20px;
+      transition: background-image 1s ease-in-out; /* Efek transisi antar gambar */
+    }
+    
     .btn-hero { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d7ccc8; color: #3e2723; text-decoration: none; font-weight: bold; border-radius: 4px; }
     .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
     .welcome-section { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
@@ -76,7 +89,8 @@
     </div>
   </nav>
 
-  <header class="hero">
+  <!-- Ditambahkan id="hero-header" -->
+  <header class="hero" id="hero-header">
     <div class="hero-content">
       <h1>Parang Gupita Puspita Murti</h1>
       <p>Satu Pramuka untuk Satu Indonesia — Bawa Perubahan, Wujudkan Prestasi.</p>
@@ -116,6 +130,28 @@
     </div>
   </footer>
 
-  <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // --- SCRIPT PERGANTIAN BACKGROUND ---
+    // Masukkan nama-nama file foto kamu di dalam array di bawah ini:
+    const backgroundImages = [
+      'fotobackground-1.jpeg',
+      'fotobackground-2.jpeg', // ganti dengan nama file foto kedua
+      'fotobackground-3.jpeg'  // ganti dengan nama file foto ketiga
+    ];
+
+    let currentBgIndex = 0;
+    const heroHeader = document.getElementById('hero-header');
+
+    function changeHeroBackground() {
+      currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+      // Tetap menjaga efek lapisan gelap (linear-gradient) agar teks tetap terbaca
+      heroHeader.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${backgroundImages[currentBgIndex]}')`;
+    }
+
+    // Berganti foto setiap 5 detik (5000ms)
+    setInterval(changeHeroBackground, 5000);
+  </script>
 </body>
 </html>
