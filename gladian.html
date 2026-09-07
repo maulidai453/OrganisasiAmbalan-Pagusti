@@ -182,54 +182,106 @@
     </div>
   </main>
 
-<footer>
-  <div class="footer-container">
-    
-    <!-- Kolom 1: Pangkalan -->
-    <div class="footer-section">
-      <h3 class="footer-title">Pangkalan</h3>
-      <p>
-        <strong>GUDEP 26-051/26-052</strong><br>
-        SMK NEGERI 1 KLATEN<br>
-        Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
-      </p>
-    </div>
-
-    <!-- Kolom 2: Maps (Dipisah biar gak mepet alamat) -->
-    <div class="footer-section">
-      <h3 class="footer-title">Lokasi</h3>
-      <iframe 
-        class="footer-maps" 
-<iframe class="footer-maps" src="https://maps.google.com/maps?q=SMK%20Negeri%201%20Klaten&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>      </div>
-      </iframe>
-    </div>
-
-    <!-- Kolom 3: Sosmed (Tanpa ul/li biar gak ada bulatan & garis biru) -->
-    <div class="footer-section">
-      <h3 class="footer-title">Sosmed</h3>
-      <div class="footer-links-container">
-        <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-          <img src="Youtube.png" alt="YouTube">
-          <span>Youtube</span>
-        </a>
-        <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-          <img src="Instagram.png" alt="Instagram">
-          <span>Instagram</span>
-        </a>
-        <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-          <img src="Tiktok.png" alt="TikTok">
-          <span>TikTok</span>
-        </a>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Pangkalan</h3>
+        <p>
+          <strong>GUDEP 26-051/26-052</strong><br>
+          SMK NEGERI 1 KLATEN<br>
+          Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
+        </p>
+        <iframe class="footer-maps" src="https://maps.google.com/maps?q=SMK%20Negeri%201%20Klaten&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>      </div>
+      <div class="footer-section">
+        <h3 class="footer-title">Sosmed</h3>
+        <ul class="footer-links">
+  <li>
+    <a href="https://youtube.com/@idpagusti8571?si=fcJ2fdGokhPrNgpj" target="_blank" rel="noopener noreferrer">
+      <img src="Youtube.png" alt="YouTube" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Youtube
+    </a>
+  </li>
+  <li>
+    <a href="https://www.instagram.com/id_pagusti?stkn=MW05OGhheXg2bWw3Nw==" target="_blank" rel="noopener noreferrer">
+      <img src="Instagram.png" alt="Instagram" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Instagram
+    </a>
+  </li>
+  <li>
+    <a href="https://www.tiktok.com/@id.pagusti?_r=1&_t=ZS-99VRMVjWHOG" target="_blank" rel="noopener noreferrer">
+      <img src="Tiktok.png" alt="TikTok" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> TikTok
+    </a>
+  </li>
+</ul>
       </div>
     </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
-  </div>
-</footer>
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
+    </div>
+  </footer>
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
+<script>
+  const siteData = [
+    { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+    { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+    { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+    { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+    { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+    { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
+    { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+    { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+  ];
+
+  function showSuggestions(val) {
+    const input = val.trim().toLowerCase();
+    const box = document.getElementById('searchSuggestions');
+    box.innerHTML = '';
+
+    if (!input) {
+      box.style.display = 'none';
+      return;
+    }
+
+    const matches = siteData.filter(item => 
+      item.title.toLowerCase().includes(input) || 
+      item.keywords.some(k => k.includes(input))
+    );
+
+    if (matches.length > 0) {
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+        div.onclick = () => { window.location.href = item.url; };
+        box.appendChild(div);
+      });
+      box.style.display = 'block';
+    } else {
+      box.style.display = 'none';
+    }
+  }
+
+  function searchWebsite(event) {
+    event.preventDefault();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!query) return;
+
+    const match = siteData.find(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(k => k.includes(query) || query.includes(k))
+    );
+
+    if (match) {
+      window.location.href = match.url;
+    } else {
+      alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      document.getElementById('searchSuggestions').style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
