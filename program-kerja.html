@@ -20,15 +20,74 @@
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
     
-    /* Search Bar */
-    .search-container { display: flex; }
+    /* Search Form Standard */
+    .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
-    .search-btn { background-color: #5d4037; border: none; color: white; padding: 6px 12px; border-radius: 0 4px 4px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .search-btn:hover { background-color: #3e2723; }
-    .search-suggestions { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border-radius: 0 0 6px 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; overflow: hidden; }
-    .suggestion-item { padding: 10px 14px; color: #333; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; border-bottom: 1px solid #eee; }
-    .suggestion-item:hover { background-color: #f5f5f5; color: #3e2723; }
-    .suggestion-tag { font-size: 0.75rem; background: #efebe9; color: #5d4037; padding: 2px 6px; border-radius: 4px; }
+    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+    .search-suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.suggestion-item {
+  padding: 10px 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+  color: #3e2723;
+}
+
+.suggestion-tag {
+  font-size: 0.75rem;
+  background: #efebe9;
+  color: #5d4037;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+    /* Styling tombol search pakai emoji 🔍 agar estetik */
+.search-btn {
+  background-color: #5d4037; /* Warna cokelat pramuka */
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover {
+  background-color: #3e2723; /* Cokelat lebih gelap saat di-hover */
+}
+
+.search-btn:active {
+  transform: scale(0.92); /* Efek membal pas diklik */
+}
 
     /* Main Content */
     .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
@@ -36,7 +95,7 @@
     .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
     .page-title p { color: #666; font-size: 1rem; }
 
-    /* Grid Layout 6 Program Kerja (2 kolom) */
+    /* Grid Layout 6 Program Kerja */
     .progja-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -77,7 +136,7 @@
       display: block;
     }
 
-    /* Footer */
+    /* Footer Standard */
     footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
     .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
     .footer-section { flex: 1; min-width: 220px; }
@@ -85,15 +144,13 @@
     .footer-section p { line-height: 1.6; }
     .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
 
-    /* CSS Sosmed Footer (Bebas Bulatan & Underscore) */
-    .footer-links-container { display: flex !important; flex-direction: column !important; gap: 12px !important; }
-    .footer-sosmed-item { color: #d7ccc8 !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; font-size: 0.95rem; }
-    .footer-sosmed-item:hover { color: #ff9800 !important; }
-    .footer-sosmed-item img { width: 22px !important; height: 22px !important; object-fit: contain; }
+    .footer-links-container { display: flex; flex-direction: column; gap: 12px; }
+    .footer-sosmed-item { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800; }
+    .footer-sosmed-item img { width: 22px; height: 22px; object-fit: contain; }
 
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
 
-    /* Responsive untuk Layar HP */
     @media (max-width: 768px) {
       .progja-grid { grid-template-columns: repeat(1, 1fr); }
       .nav-links { display: none; }
@@ -130,14 +187,14 @@
       </li>
     </ul>
 
-    <!-- Search Bar -->
+    <!-- Form Search Standar Baku -->
     <div class="search-container" style="position: relative;">
-      <form onsubmit="searchWebsite(event)">
-        <input type="text" id="searchInput" placeholder="Cari..." autocomplete="off" oninput="showSuggestions(this.value)" required>
-        <button type="submit" class="search-btn">🔍</button>
-      </form>
-      <div id="searchSuggestions" class="search-suggestions"></div>
-    </div>
+  <form onsubmit="searchWebsite(event)">
+    <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
+    <button type="submit" class="search-btn">🔍</button>
+  </form>
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
   </nav>
 
   <!-- Konten Utama -->
@@ -150,7 +207,6 @@
     <!-- Grid 6 Program Kerja -->
     <div class="progja-grid">
       
-      <!-- Progja 1 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>1. Penerimaan Tamu Ambalan (PTA)</h3>
@@ -159,7 +215,6 @@
         <img src="progja-pta.jpg" alt="Dokumentasi Penerimaan Tamu Ambalan" class="progja-img">
       </div>
 
-      <!-- Progja 2 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>2. Musyawarah Ambalan (Musyam)</h3>
@@ -168,7 +223,6 @@
         <img src="progja-musyam.jpg" alt="Dokumentasi Musyawarah Ambalan" class="progja-img">
       </div>
 
-      <!-- Progja 3 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>3. Gladian Pimpinan Sangga (Dianpinsat)</h3>
@@ -177,7 +231,6 @@
         <img src="progja-dianpinsat.jpg" alt="Dokumentasi Dianpinsat" class="progja-img">
       </div>
 
-      <!-- Progja 4 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>4. Pelantikan Penegak Bantara & Laksana</h3>
@@ -186,7 +239,6 @@
         <img src="progja-pelantikan.jpg" alt="Dokumentasi Pelantikan Bantara" class="progja-img">
       </div>
 
-      <!-- Progja 5 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>5. Perkemahan Bakti Masyarakat</h3>
@@ -195,7 +247,6 @@
         <img src="progja-bakti.jpg" alt="Dokumentasi Perkemahan Bakti" class="progja-img">
       </div>
 
-      <!-- Progja 6 -->
       <div class="progja-card">
         <div class="progja-content">
           <h3>6. Latihan Gabungan & Peringatan Hari Pramuka</h3>
@@ -207,7 +258,7 @@
     </div>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer Standar -->
   <footer>
     <div class="footer-container">
       <div class="footer-section">
@@ -233,15 +284,15 @@
         <h3 class="footer-title">Sosmed</h3>
         <div class="footer-links-container">
           <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-youtube.png" alt="YouTube">
+            <img src="Youtube.png" alt="YouTube">
             <span>Youtube</span>
           </a>
           <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-instagram.png" alt="Instagram">
+            <img src="Instagram.png" alt="Instagram">
             <span>Instagram</span>
           </a>
           <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-tiktok.png" alt="TikTok">
+            <img src="Tiktok.png" alt="TikTok">
             <span>TikTok</span>
           </a>
         </div>
@@ -252,72 +303,6 @@
       <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
     </div>
   </footer>
-
-  <!-- Script Search Multi-Halaman -->
-  <script>
-    const siteData = [
-      { title: 'Visi & Misi', icon: '🎯', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
-      { title: 'Makna Logo Ambalan', icon: '🛡️', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
-      { title: 'Sejarah Pramuka', icon: '📜', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
-      { title: 'Struktur Organisasi', icon: '👥', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
-      { title: 'Dokumentasi Gladian', icon: '📷', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
-      { title: 'Program Kerja', icon: '📅', keywords: ['prokerja', 'program kerja', 'agenda', 'pta', 'musyam'], url: 'program-kerja.html', category: 'Galeri' },
-      { title: 'Kegiatan Partisipasi', icon: '🏆', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
-      { title: 'Beranda Utama', icon: '🏠', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
-    ];
-
-    function showSuggestions(val) {
-      const input = val.trim().toLowerCase();
-      const box = document.getElementById('searchSuggestions');
-      box.innerHTML = '';
-
-      if (!input) {
-        box.style.display = 'none';
-        return;
-      }
-
-      const matches = siteData.filter(item => 
-        item.title.toLowerCase().includes(input) || 
-        item.keywords.some(k => k.includes(input))
-      );
-
-      if (matches.length > 0) {
-        matches.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'suggestion-item';
-          div.innerHTML = `<span>${item.icon} ${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
-          div.onclick = () => { window.location.href = item.url; };
-          box.appendChild(div);
-        });
-        box.style.display = 'block';
-      } else {
-        box.style.display = 'none';
-      }
-    }
-
-    function searchWebsite(event) {
-      event.preventDefault();
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      if (!query) return;
-
-      const match = siteData.find(item => 
-        item.title.toLowerCase().includes(query) || 
-        item.keywords.some(k => k.includes(query) || query.includes(k))
-      );
-
-      if (match) {
-        window.location.href = match.url;
-      } else {
-        alert('Pencarian tidak ditemukan. Coba ketik Visi, Gladian, atau Struktur.');
-      }
-    }
-
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.search-container')) {
-        document.getElementById('searchSuggestions').style.display = 'none';
-      }
-    });
-  </script>
 
 </body>
 </html>
