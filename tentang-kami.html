@@ -68,9 +68,13 @@
         </div>
       </li>
     </ul>
-    <div class="search-container">
-      <form action="#"><input type="text" placeholder="Cari..." name="query"><button type="submit">🔍</button></form>
-    </div>
+    <div class="search-container" style="position: relative;">
+  <form onsubmit="searchWebsite(event)">
+    <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
+    <button type="submit" class="search-btn">🔍</button>
+  </form>
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
   </nav>
 
   <main class="container">
@@ -128,5 +132,69 @@
   </footer>
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
+  <script>
+  const siteData = [
+    { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+    { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+    { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+    { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+    { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+    { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
+    { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+    { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+  ];
+
+  function showSuggestions(val) {
+    const input = val.trim().toLowerCase();
+    const box = document.getElementById('searchSuggestions');
+    box.innerHTML = '';
+
+    if (!input) {
+      box.style.display = 'none';
+      return;
+    }
+
+    const matches = siteData.filter(item => 
+      item.title.toLowerCase().includes(input) || 
+      item.keywords.some(k => k.includes(input))
+    );
+
+    if (matches.length > 0) {
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+        div.onclick = () => { window.location.href = item.url; };
+        box.appendChild(div);
+      });
+      box.style.display = 'block';
+    } else {
+      box.style.display = 'none';
+    }
+  }
+
+  function searchWebsite(event) {
+    event.preventDefault();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!query) return;
+
+    const match = siteData.find(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(k => k.includes(query) || query.includes(k))
+    );
+
+    if (match) {
+      window.location.href = match.url;
+    } else {
+      alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      document.getElementById('searchSuggestions').style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
