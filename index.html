@@ -138,18 +138,26 @@
   </footer>
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
-  <script>
+ <script>
   function searchWebsite(event) {
     event.preventDefault(); // Mencegah reload halaman
+    
     const query = document.getElementById('searchInput').value.trim();
-    if (query !== '') {
-      // Mencari teks di dalam halaman yang sedang dibuka
-      if (window.find(query)) {
-        // Teks ditemukan dan otomatis ter-highlight
-      } else {
-        alert('Kata kunci "' + query + '" tidak ditemukan di halaman ini.');
-      }
+    if (!query) return;
+
+    // Menghapus highlight pencarian sebelumnya jika ada
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    }
+
+    // Menggunakan window.find dengan parameter lengkap agar kompatibel
+    // window.find(string, aCaseSensitive, aBackwards, aWrapAround, aWholeWord, aSearchInFrames, aShowDialog)
+    const found = window.find(query, false, false, true, false, false, false);
+
+    if (!found) {
+      alert('Kata kunci "' + query + '" tidak ditemukan di halaman ini.');
     }
   }
+</script>
 </body>
 </html>
