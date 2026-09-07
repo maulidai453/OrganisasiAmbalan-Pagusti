@@ -7,6 +7,8 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f1ea; color: #333; }
+
+    /* Navbar */
     .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
     .logo { display: flex; align-items: center; gap: 10px; }
     .logo img { height: 35px; width: auto; object-fit: contain; }
@@ -20,30 +22,82 @@
     .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
     .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
-    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-    .card { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .btn-back { display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #3e2723; color: white; text-decoration: none; border-radius: 4px; }
 
-    /* Footer CSS */
-    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 50px; font-size: 0.95rem; }
+    /* Main Content */
+    .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 30px; color: #3e2723; }
+    .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
+    .page-title p { color: #666; font-size: 1rem; }
+
+    /* Layout Grid 3x3 untuk Galeri */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 kolom sejajar */
+      gap: 20px; /* Jarak antar gambar */
+      margin-top: 20px;
+    }
+
+    .gallery-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover; /* Biar gambar gak penyok */
+      display: block;
+    }
+
+    .gallery-info {
+      padding: 12px 15px;
+      text-align: center;
+    }
+
+    .gallery-info h3 {
+      font-size: 1rem;
+      color: #3e2723;
+      margin-bottom: 4px;
+    }
+
+    /* Footer */
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
     .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
-    .footer-section { flex: 1; min-width: 280px; }
+    .footer-section { flex: 1; min-width: 250px; }
     .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
-    .footer-section p { line-height: 1.6; margin-bottom: 12px; }
-    .footer-maps { width: 100%; height: 160px; border: none; border-radius: 6px; margin-top: 5px; }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .footer-links a:hover { color: #ff9800; }
+    .footer-section p { line-height: 1.6; }
+    .footer-maps { width: 100%; height: 160px; border: none; border-radius: 6px; }
+
+    /* Anti-bentrok Sosmed Footer */
+    .footer-links-container { display: flex !important; flex-direction: column !important; gap: 12px !important; margin-top: 5px; }
+    .footer-sosmed-item { color: #d7ccc8 !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800 !important; }
+    .footer-sosmed-item img { width: 22px !important; height: 22px !important; object-fit: contain; }
+
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    /* Responsive untuk HP (jadi 1 kolom kalau di layar kecil) */
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(1, 1fr); }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">
-      <img src="tunas-kelapa.png" alt="Logo Tunas Kelapa">
-      <img src="logo-ambalan.png" alt="Logo Pagusti">
+      <img src="logo-tunaskelapa.png" alt="Logo Tunas Kelapa">
+      <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
     <ul class="nav-links">
@@ -58,52 +112,125 @@
       </li>
       <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
       <li class="dropdown">
-        <a href="#">Galeri ▾</a>
+        <a href="#" class="active">Galeri ▾</a>
         <div class="dropdown-content">
-          <a href="gladian.html" class="active">Gladian</a>
+          <a href="gladian.html">Gladian</a>
           <a href="program-kerja.html">Program Kerja</a>
           <a href="kegiatan-partisipasi.html">Kegiatan Partisipasi</a>
         </div>
       </li>
     </ul>
     <div class="search-container">
-      <form action="#"><input type="text" placeholder="Cari..." name="query"><button type="submit">🔍</button></form>
+      <form action="#" method="GET">
+        <input type="text" placeholder="Search" name="query" required>
+        <button type="submit">🔍</button>
+      </form>
     </div>
   </nav>
 
+  <!-- Konten Utama -->
   <main class="container">
-    <h1>Galeri Gladian Pemimpin Sangga (Dianpinsat)</h1>
-    <div class="card">
-      <p>Dokumentasi pelatihan kepemimpinan untuk Dewan Ambalan dan Pemimpin Sangga dalam mengasah keterampilan teknik kepramukaan serta manajemen organisasi.</p>
+    <div class="page-title">
+      <h1>Dokumentasi Gladian & Latihan Rutin</h1>
+      <p>Galeri kegiatan Pramuka Penegak Ambalan Parang Gupita - Puspita Murti</p>
     </div>
-    <a href="index.html" class="btn-back">← Kembali ke Beranda</a>
+
+    <!-- Grid 3x3 (Total 9 Gambar) -->
+    <div class="gallery-grid">
+      
+      <div class="gallery-card">
+        <img src="gladian-1.jpg" alt="Dokumentasi 1">
+        <div class="gallery-info"><h3>Apel Pembukaan Gladian</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-2.jpg" alt="Dokumentasi 2">
+        <div class="gallery-info"><h3>Materi Kepramukaan</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-3.jpg" alt="Dokumentasi 3">
+        <div class="gallery-info"><h3>Latihan PBB & Semapor</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-4.jpg" alt="Dokumentasi 4">
+        <div class="gallery-info"><h3>Praktek Pionering</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-5.jpg" alt="Dokumentasi 5">
+        <div class="gallery-info"><h3>Diskusi Kelompok Sangga</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-6.jpg" alt="Dokumentasi 6">
+        <div class="gallery-info"><h3>Latihan Kepemimpinan</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-7.jpg" alt="Dokumentasi 7">
+        <div class="gallery-info"><h3>Kegiatan Outbound</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-8.jpg" alt="Dokumentasi 8">
+        <div class="gallery-info"><h3>Evaluasi Kegiatan</h3></div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="gladian-9.jpg" alt="Dokumentasi 9">
+        <div class="gallery-info"><h3>Foto Bersama Anggota</h3></div>
+      </div>
+
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-section">
-        <h3 class="footer-title">Kantor</h3>
+        <h3 class="footer-title">Pangkalan</h3>
         <p>
-          <strong>AMBALAN PAGUSTI</strong><br>
+          <strong>GUDEP 26-051/26-052</strong><br>
           SMK NEGERI 1 KLATEN<br>
           Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
         </p>
-        <iframe class="footer-maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6496458532437!2d110.59828461477764!3d-7.720689994434947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4430e3bb4933%3A0x2db446bfb7bb4df1!2sSMK%20Negeri%201%20Klaten!5e0!3m2!1sid!2sid!4v1690000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
       </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Lokasi</h3>
+        <iframe 
+          class="footer-maps" 
+          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
       <div class="footer-section">
         <h3 class="footer-title">Sosmed</h3>
-        <ul class="footer-links">
-          <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">▶ Youtube</a></li>
-          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">📷 Instagram</a></li>
-          <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">🎵 TikTok</a></li>
-        </ul>
+        <div class="footer-links-container">
+          <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-youtube.png" alt="YouTube">
+            <span>Youtube</span>
+          </a>
+          <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-tiktok.png" alt="TikTok">
+            <span>TikTok</span>
+          </a>
+        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
 </body>
 </html>
