@@ -138,41 +138,66 @@
   </footer>
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
- <script>
+<script>
   function searchWebsite(event) {
     event.preventDefault();
     
+    // Ambil kata kunci dan ubah ke huruf kecil
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     if (!query) return;
 
-    // Cari elemen teks (paragraf, judul, link, span) yang ada di dalam halaman
-    const elements = document.querySelectorAll('p, h1, h2, h3, h4, a, span, td, li');
-    let found = false;
+    // Daftar kata kunci dan tujuan halamannya
+    const pages = [
+      {
+        keywords: ['visi', 'misi', 'tentang', 'profil', 'sejarah ambalan', 'pagusti'],
+        url: 'tentang-kami.html'
+      },
+      {
+        keywords: ['logo', 'makna', 'arti logo', 'lambang'],
+        url: 'makna-logo.html'
+      },
+      {
+        keywords: ['sejarah', 'pramuka', 'badan powell', 'sejarah singkat'],
+        url: 'sejarah-pramuka.html'
+      },
+      {
+        keywords: ['struktur', 'organisasi', 'pengurus', 'pradana', 'pembina', 'dewan'],
+        url: 'struktur-organisasi.html'
+      },
+      {
+        keywords: ['gladian', 'dokumentasi', 'latihan', 'rutin', 'foto'],
+        url: 'gladian.html'
+      },
+      {
+        keywords: ['prokerja', 'program kerja', 'agenda', 'kegiatan utama'],
+        url: 'program-kerja.html'
+      },
+      {
+        keywords: ['partisipasi', 'lomba', 'kegiatan luar', 'event'],
+        url: 'kegiatan-partisipasi.html'
+      },
+      {
+        keywords: ['beranda', 'home', 'utama', 'pangkalan', 'gudep'],
+        url: 'index.html'
+      }
+    ];
 
-    for (let el of elements) {
-      // Abaikan elemen di dalam navbar/footer agar tidak mencari menu/sosmed
-      if (el.closest('.navbar') || el.closest('footer')) continue;
+    // Cek apakah kata kunci cocok dengan salah satu halaman
+    let targetUrl = null;
 
-      if (el.textContent.toLowerCase().includes(query)) {
-        // Scroll otomatis ke elemen yang ditemukan
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        
-        // Efek visual: teks berkedip warna kuning/oranye
-        const originalBg = el.style.backgroundColor;
-        el.style.transition = 'background-color 0.3s';
-        el.style.backgroundColor = '#ffe082';
-        
-        setTimeout(() => {
-          el.style.backgroundColor = originalBg;
-        }, 2000);
-
-        found = true;
-        break; // Hentikan pencarian di hasil pertama
+    for (let page of pages) {
+      // Jika ada salah satu kata kunci yang cocok dengan input user
+      if (page.keywords.some(keyword => query.includes(keyword) || keyword.includes(query))) {
+        targetUrl = page.url;
+        break;
       }
     }
 
-    if (!found) {
-      alert('Kata kunci "' + query + '" tidak ditemukan di halaman ini.');
+    // Jika ketemu halamannya, langsung alihkan (redirect)
+    if (targetUrl) {
+      window.location.href = targetUrl;
+    } else {
+      alert('Halaman atau informasi untuk "' + query + '" tidak ditemukan.');
     }
   }
 </script>
