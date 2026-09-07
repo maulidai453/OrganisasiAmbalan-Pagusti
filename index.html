@@ -20,6 +20,48 @@
     .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
     .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+
+.search-suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.suggestion-item {
+  padding: 10px 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+  color: #3e2723;
+}
+
+.suggestion-tag {
+  font-size: 0.75rem;
+  background: #efebe9;
+  color: #5d4037;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
     
     .hero { 
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('foto bg 2.JPG') center/cover; 
@@ -78,11 +120,12 @@
         </div>
       </li>
     </ul>
-    <div class="search-container">
+    <div class="search-container" style="position: relative;">
   <form onsubmit="searchWebsite(event)">
-    <input type="text" id="searchInput" placeholder="Cari.." required>
-    <button type="submit">🔍</button>
+    <input type="text" id="searchInput" placeholder="Cari.." autocomplete="off" oninput="showSuggestions(this.value)">
+    <button type="submit">Cari</button>
   </form>
+  <div id="searchSuggestions" class="search-suggestions"></div>
 </div>
   </nav>
 
@@ -139,67 +182,68 @@
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
 <script>
+  const siteData = [
+    { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+    { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+    { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+    { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+    { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+    { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
+    { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+    { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+  ];
+
+  function showSuggestions(val) {
+    const input = val.trim().toLowerCase();
+    const box = document.getElementById('searchSuggestions');
+    box.innerHTML = '';
+
+    if (!input) {
+      box.style.display = 'none';
+      return;
+    }
+
+    const matches = siteData.filter(item => 
+      item.title.toLowerCase().includes(input) || 
+      item.keywords.some(k => k.includes(input))
+    );
+
+    if (matches.length > 0) {
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+        div.onclick = () => { window.location.href = item.url; };
+        box.appendChild(div);
+      });
+      box.style.display = 'block';
+    } else {
+      box.style.display = 'none';
+    }
+  }
+
   function searchWebsite(event) {
     event.preventDefault();
-    
-    // Ambil kata kunci dan ubah ke huruf kecil
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     if (!query) return;
 
-    // Daftar kata kunci dan tujuan halamannya
-    const pages = [
-      {
-        keywords: ['visi', 'misi', 'tentang', 'profil', 'sejarah ambalan', 'pagusti'],
-        url: 'tentang-kami.html'
-      },
-      {
-        keywords: ['logo', 'makna', 'arti logo', 'lambang'],
-        url: 'makna-logo.html'
-      },
-      {
-        keywords: ['sejarah', 'pramuka', 'badan powell', 'sejarah singkat'],
-        url: 'sejarah-pramuka.html'
-      },
-      {
-        keywords: ['struktur', 'organisasi', 'pengurus', 'pradana', 'pembina', 'dewan'],
-        url: 'struktur-organisasi.html'
-      },
-      {
-        keywords: ['gladian', 'dokumentasi', 'latihan', 'rutin', 'foto'],
-        url: 'gladian.html'
-      },
-      {
-        keywords: ['prokerja', 'program kerja', 'agenda', 'kegiatan utama'],
-        url: 'program-kerja.html'
-      },
-      {
-        keywords: ['partisipasi', 'lomba', 'kegiatan luar', 'event'],
-        url: 'kegiatan-partisipasi.html'
-      },
-      {
-        keywords: ['beranda', 'home', 'utama', 'pangkalan', 'gudep'],
-        url: 'index.html'
-      }
-    ];
+    const match = siteData.find(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(k => k.includes(query) || query.includes(k))
+    );
 
-    // Cek apakah kata kunci cocok dengan salah satu halaman
-    let targetUrl = null;
-
-    for (let page of pages) {
-      // Jika ada salah satu kata kunci yang cocok dengan input user
-      if (page.keywords.some(keyword => query.includes(keyword) || keyword.includes(query))) {
-        targetUrl = page.url;
-        break;
-      }
-    }
-
-    // Jika ketemu halamannya, langsung alihkan (redirect)
-    if (targetUrl) {
-      window.location.href = targetUrl;
+    if (match) {
+      window.location.href = match.url;
     } else {
-      alert('Halaman atau informasi untuk "' + query + '" tidak ditemukan.');
+      alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
     }
   }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      document.getElementById('searchSuggestions').style.display = 'none';
+    }
+  });
 </script>
 </body>
 </html>
