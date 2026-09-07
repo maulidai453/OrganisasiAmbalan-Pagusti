@@ -7,6 +7,8 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f1ea; color: #333; }
+
+    /* Navbar */
     .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
     .logo { display: flex; align-items: center; gap: 10px; }
     .logo img { height: 35px; width: auto; object-fit: contain; }
@@ -17,35 +19,94 @@
     .nav-links a:hover, .nav-links a.active { color: #fff; background-color: #5d4037; }
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
-    .search-container form { display: flex; }
+    
+    /* Search Bar */
+    .search-container { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
-    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
-    .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-    .card { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .card h3 { color: #3e2723; margin-bottom: 8px; }
-    .video-container { margin-top: 15px; }
-    .btn-back { display: inline-block; margin-top: 20px; padding: 10px 15px; background-color: #3e2723; color: white; text-decoration: none; border-radius: 4px; }
+    .search-btn { background-color: #5d4037; border: none; color: white; padding: 6px 12px; border-radius: 0 4px 4px 0; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .search-btn:hover { background-color: #3e2723; }
+    .search-suggestions { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #ffffff; border-radius: 0 0 6px 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; overflow: hidden; }
+    .suggestion-item { padding: 10px 14px; color: #333; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+    .suggestion-item:hover { background-color: #f5f5f5; color: #3e2723; }
+    .suggestion-tag { font-size: 0.75rem; background: #efebe9; color: #5d4037; padding: 2px 6px; border-radius: 4px; }
 
-    /* Footer CSS */
-    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 50px; font-size: 0.95rem; }
-    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
-    .footer-section { flex: 1; min-width: 280px; }
+    /* Main Content */
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 40px; color: #3e2723; }
+    .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
+    .page-title p { color: #666; font-size: 1rem; }
+
+    /* Grid Layout 6 Program Kerja (2 kolom) */
+    .progja-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .progja-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 4px solid #ff9800;
+    }
+
+    .progja-content {
+      padding: 20px;
+    }
+
+    .progja-content h3 {
+      color: #3e2723;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .progja-content p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .progja-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Footer */
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+    .footer-section { flex: 1; min-width: 220px; }
     .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
-    .footer-section p { line-height: 1.6; margin-bottom: 12px; }
-    .footer-maps { width: 100%; height: 160px; border: none; border-radius: 6px; margin-top: 5px; }
-    .footer-links { list-style: none; padding: 0; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .footer-links a:hover { color: #ff9800; }
+    .footer-section p { line-height: 1.6; }
+    .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
+
+    /* CSS Sosmed Footer (Bebas Bulatan & Underscore) */
+    .footer-links-container { display: flex !important; flex-direction: column !important; gap: 12px !important; }
+    .footer-sosmed-item { color: #d7ccc8 !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 10px !important; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800 !important; }
+    .footer-sosmed-item img { width: 22px !important; height: 22px !important; object-fit: contain; }
+
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    /* Responsive untuk Layar HP */
+    @media (max-width: 768px) {
+      .progja-grid { grid-template-columns: repeat(1, 1fr); }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">
-      <img src="tunas-kelapa.png" alt="Logo Tunas Kelapa">
-      <img src="logo-ambalan.png" alt="Logo Pagusti">
+      <img src="logo-tunaskelapa.png" alt="Logo Tunas Kelapa">
+      <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
     <ul class="nav-links">
@@ -60,7 +121,7 @@
       </li>
       <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
       <li class="dropdown">
-        <a href="#">Galeri ▾</a>
+        <a href="#" class="active">Galeri ▾</a>
         <div class="dropdown-content">
           <a href="gladian.html">Gladian</a>
           <a href="program-kerja.html" class="active">Program Kerja</a>
@@ -68,55 +129,195 @@
         </div>
       </li>
     </ul>
-    <div class="search-container">
-      <form action="#"><input type="text" placeholder="Cari..." name="query"><button type="submit">🔍</button></form>
+
+    <!-- Search Bar -->
+    <div class="search-container" style="position: relative;">
+      <form onsubmit="searchWebsite(event)">
+        <input type="text" id="searchInput" placeholder="Cari..." autocomplete="off" oninput="showSuggestions(this.value)" required>
+        <button type="submit" class="search-btn">🔍</button>
+      </form>
+      <div id="searchSuggestions" class="search-suggestions"></div>
     </div>
   </nav>
 
+  <!-- Konten Utama -->
   <main class="container">
-    <h1>Program Kerja Ambalan</h1>
-    
-    <div class="card">
-      <h3>1. Penerimaan Tamu Ambalan (PTA)</h3>
-      <p>Kegiatan penyambutan anggota baru Pramuka Penegak untuk menjadi bagian resmi dari Ambalan Pagusti.</p>
+    <div class="page-title">
+      <h1>Program Kerja Ambalan</h1>
+      <p>Rencana kegiatan tahunan Dewan Ambalan Parang Gupita - Puspita Murti</p>
     </div>
 
-    <div class="card">
-      <h3>2. Barapinsantara</h3>
-      <p>Lomba ketangkasan kepramukaan dan pengembaraan untuk melatih ketahanan fisik serta kebersamaan sangga.</p>
-      <div class="video-container">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Kegiatan" frameborder="0" allowfullscreen></iframe>
+    <!-- Grid 6 Program Kerja -->
+    <div class="progja-grid">
+      
+      <!-- Progja 1 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>1. Penerimaan Tamu Ambalan (PTA)</h3>
+          <p>Kegiatan pengenalan lingkungan ambalan serta penyambutan resmi bagi calon anggota penegak baru di SMKN 1 Klaten untuk beradaptasi dengan tradisi Pramuka Penegak.</p>
+        </div>
+        <img src="progja-pta.jpg" alt="Dokumentasi Penerimaan Tamu Ambalan" class="progja-img">
       </div>
-    </div>
 
-    <a href="index.html" class="btn-back">← Kembali ke Beranda</a>
+      <!-- Progja 2 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>2. Musyawarah Ambalan (Musyam)</h3>
+          <p>Forum tertinggi Dewan Ambalan untuk mengevaluasi laporan pertanggungjawaban kepengurusan lama serta merumuskan kepengurusan baru untuk periode berikutnya.</p>
+        </div>
+        <img src="progja-musyam.jpg" alt="Dokumentasi Musyawarah Ambalan" class="progja-img">
+      </div>
+
+      <!-- Progja 3 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>3. Gladian Pimpinan Sangga (Dianpinsat)</h3>
+          <p>Pelatihan kepemimpinan dan manajemen sangga yang ditujukan khusus bagi para Pemimpin Sangga (Pinsa) dan Wakil Pemimpin Sangga (Wapinsa) agar mampu mengelola anggotanya.</p>
+        </div>
+        <img src="progja-dianpinsat.jpg" alt="Dokumentasi Dianpinsat" class="progja-img">
+      </div>
+
+      <!-- Progja 4 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>4. Pelantikan Penegak Bantara & Laksana</h3>
+          <p>Prosesi pengujian Syarat Kecakapan Umum (SKU) serta peresmian kenaikan tingkat anggota dari Tamu Ambalan menjadi Penegak Bantara hingga Penegak Laksana.</p>
+        </div>
+        <img src="progja-pelantikan.jpg" alt="Dokumentasi Pelantikan Bantara" class="progja-img">
+      </div>
+
+      <!-- Progja 5 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>5. Perkemahan Bakti Masyarakat</h3>
+          <p>Wujud pengabdian anggota Pramuka Penegak kepada masyarakat melalui aksi sosial, kerja bakti lingkungan, serta pembagian sembako di sekitar wilayah Klaten.</p>
+        </div>
+        <img src="progja-bakti.jpg" alt="Dokumentasi Perkemahan Bakti" class="progja-img">
+      </div>
+
+      <!-- Progja 6 -->
+      <div class="progja-card">
+        <div class="progja-content">
+          <h3>6. Latihan Gabungan & Peringatan Hari Pramuka</h3>
+          <p>Kegiatan pengasahan keterampilan kepramukaan bersama pangkalan lain serta apel besar memperingati Hari Pramuka setiap tanggal 14 Agustus.</p>
+        </div>
+        <img src="progja-haripramuka.jpg" alt="Dokumentasi Hari Pramuka" class="progja-img">
+      </div>
+
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-section">
-        <h3 class="footer-title">Kantor</h3>
+        <h3 class="footer-title">Pangkalan</h3>
         <p>
-          <strong>AMBALAN PAGUSTI</strong><br>
+          <strong>GUDEP 26-051/26-052</strong><br>
           SMK NEGERI 1 KLATEN<br>
           Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
         </p>
-        <iframe class="footer-maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6496458532437!2d110.59828461477764!3d-7.720689994434947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4430e3bb4933%3A0x2db446bfb7bb4df1!2sSMK%20Negeri%201%20Klaten!5e0!3m2!1sid!2sid!4v1690000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
       </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Lokasi</h3>
+        <iframe 
+          class="footer-maps" 
+          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
       <div class="footer-section">
         <h3 class="footer-title">Sosmed</h3>
-        <ul class="footer-links">
-          <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">▶ Youtube</a></li>
-          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">📷 Instagram</a></li>
-          <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">🎵 TikTok</a></li>
-        </ul>
+        <div class="footer-links-container">
+          <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-youtube.png" alt="YouTube">
+            <span>Youtube</span>
+          </a>
+          <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-tiktok.png" alt="TikTok">
+            <span>TikTok</span>
+          </a>
+        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
+  <!-- Script Search Multi-Halaman -->
+  <script>
+    const siteData = [
+      { title: 'Visi & Misi', icon: '🎯', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+      { title: 'Makna Logo Ambalan', icon: '🛡️', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+      { title: 'Sejarah Pramuka', icon: '📜', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+      { title: 'Struktur Organisasi', icon: '👥', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+      { title: 'Dokumentasi Gladian', icon: '📷', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+      { title: 'Program Kerja', icon: '📅', keywords: ['prokerja', 'program kerja', 'agenda', 'pta', 'musyam'], url: 'program-kerja.html', category: 'Galeri' },
+      { title: 'Kegiatan Partisipasi', icon: '🏆', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+      { title: 'Beranda Utama', icon: '🏠', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+    ];
+
+    function showSuggestions(val) {
+      const input = val.trim().toLowerCase();
+      const box = document.getElementById('searchSuggestions');
+      box.innerHTML = '';
+
+      if (!input) {
+        box.style.display = 'none';
+        return;
+      }
+
+      const matches = siteData.filter(item => 
+        item.title.toLowerCase().includes(input) || 
+        item.keywords.some(k => k.includes(input))
+      );
+
+      if (matches.length > 0) {
+        matches.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'suggestion-item';
+          div.innerHTML = `<span>${item.icon} ${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+          div.onclick = () => { window.location.href = item.url; };
+          box.appendChild(div);
+        });
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
+    }
+
+    function searchWebsite(event) {
+      event.preventDefault();
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!query) return;
+
+      const match = siteData.find(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.keywords.some(k => k.includes(query) || query.includes(k))
+      );
+
+      if (match) {
+        window.location.href = match.url;
+      } else {
+        alert('Pencarian tidak ditemukan. Coba ketik Visi, Gladian, atau Struktur.');
+      }
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-container')) {
+        document.getElementById('searchSuggestions').style.display = 'none';
+      }
+    });
+  </script>
+
 </body>
 </html>
