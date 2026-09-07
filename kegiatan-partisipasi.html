@@ -24,6 +24,70 @@
     .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
     .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+    .search-suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.suggestion-item {
+  padding: 10px 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+  color: #3e2723;
+}
+
+.suggestion-tag {
+  font-size: 0.75rem;
+  background: #efebe9;
+  color: #5d4037;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+    /* Styling tombol search pakai emoji 🔍 agar estetik */
+.search-btn {
+  background-color: #5d4037; /* Warna cokelat pramuka */
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover {
+  background-color: #3e2723; /* Cokelat lebih gelap saat di-hover */
+}
+
+.search-btn:active {
+  transform: scale(0.92); /* Efek membal pas diklik */
+}
 
     /* Main Content */
     .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
@@ -124,12 +188,13 @@
     </ul>
 
     <!-- Form Search Standar Baku -->
-    <div class="search-container">
-      <form action="#" method="GET">
-        <input type="text" placeholder="Search" name="query" required>
-        <button type="submit">🔍</button>
-      </form>
-    </div>
+    <div class="search-container" style="position: relative;">
+  <form onsubmit="searchWebsite(event)">
+    <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
+    <button type="submit" class="search-btn">🔍</button>
+  </form>
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
   </nav>
 
   <!-- Konten Utama -->
@@ -178,7 +243,7 @@
   </main>
 
   <!-- Footer Standar -->
-  <footer>
+ <footer>
     <div class="footer-container">
       <div class="footer-section">
         <h3 class="footer-title">Pangkalan</h3>
@@ -187,31 +252,21 @@
           SMK NEGERI 1 KLATEN<br>
           Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
         </p>
-      </div>
-
-      <div class="footer-section">
-        <h3 class="footer-title">Lokasi</h3>
-        <iframe 
-          class="footer-maps" 
-          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
-      </div>
+        <iframe class="footer-maps" src="https://maps.google.com/maps?q=SMK%20Negeri%201%20Klaten&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>      </div>
 
       <div class="footer-section">
         <h3 class="footer-title">Sosmed</h3>
         <div class="footer-links-container">
           <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-youtube.png" alt="YouTube">
+            <img src="Youtube.png" alt="YouTube">
             <span>Youtube</span>
           </a>
           <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-instagram.png" alt="Instagram">
+            <img src="Instagram.png" alt="Instagram">
             <span>Instagram</span>
           </a>
           <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
-            <img src="logo-tiktok.png" alt="TikTok">
+            <img src="Tiktok.png" alt="TikTok">
             <span>TikTok</span>
           </a>
         </div>
@@ -223,5 +278,70 @@
     </div>
   </footer>
 
+  <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
+<script>
+  const siteData = [
+    { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+    { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+    { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+    { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+    { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+    { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
+    { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+    { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+  ];
+
+  function showSuggestions(val) {
+    const input = val.trim().toLowerCase();
+    const box = document.getElementById('searchSuggestions');
+    box.innerHTML = '';
+
+    if (!input) {
+      box.style.display = 'none';
+      return;
+    }
+
+    const matches = siteData.filter(item => 
+      item.title.toLowerCase().includes(input) || 
+      item.keywords.some(k => k.includes(input))
+    );
+
+    if (matches.length > 0) {
+      matches.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+        div.onclick = () => { window.location.href = item.url; };
+        box.appendChild(div);
+      });
+      box.style.display = 'block';
+    } else {
+      box.style.display = 'none';
+    }
+  }
+
+  function searchWebsite(event) {
+    event.preventDefault();
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!query) return;
+
+    const match = siteData.find(item => 
+      item.title.toLowerCase().includes(query) || 
+      item.keywords.some(k => k.includes(query) || query.includes(k))
+    );
+
+    if (match) {
+      window.location.href = match.url;
+    } else {
+      alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+      document.getElementById('searchSuggestions').style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
