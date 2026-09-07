@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kegiatan Partisipasi - Ambalan Pagusti</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f1ea; color: #333; }
+
+    /* Navbar */
+    .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 35px; width: auto; object-fit: contain; }
+    .logo a { color: #fff; font-size: 1.4rem; font-weight: bold; text-decoration: none; }
+    .nav-links { list-style: none; display: flex; align-items: center; }
+    .nav-links li { margin: 0 5px; position: relative; }
+    .nav-links a { color: #d7ccc8; text-decoration: none; padding: 8px 12px; display: block; border-radius: 4px; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background-color: #5d4037; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
+    
+    /* Search Form Standard */
+    .search-container form { display: flex; }
+    .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
+    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+
+    /* Main Content */
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 40px; color: #3e2723; }
+    .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
+    .page-title p { color: #666; font-size: 1rem; }
+
+    /* Grid Layout Kegiatan Partisipasi */
+    .partisipasi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .partisipasi-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-top: 4px solid #ff9800;
+    }
+
+    .partisipasi-content {
+      padding: 20px;
+    }
+
+    .partisipasi-content h3 {
+      color: #3e2723;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .partisipasi-content p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .partisipasi-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Footer Standard */
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+    .footer-section { flex: 1; min-width: 220px; }
+    .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
+    .footer-section p { line-height: 1.6; }
+    .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
+
+    .footer-links-container { display: flex; flex-direction: column; gap: 12px; }
+    .footer-sosmed-item { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800; }
+    .footer-sosmed-item img { width: 22px; height: 22px; object-fit: contain; }
+
+    .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    @media (max-width: 768px) {
+      .partisipasi-grid { grid-template-columns: repeat(1, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo-tunaskelapa.png" alt="Logo Tunas Kelapa">
+      <img src="logo-pagusti.png" alt="Logo Pagusti">
+      <a href="index.html">Ambalan Pagusti</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Beranda</a></li>
+      <li class="dropdown">
+        <a href="#">Profil ▾</a>
+        <div class="dropdown-content">
+          <a href="tentang-kami.html">Tentang Kami</a>
+          <a href="makna-logo.html">Makna Logo</a>
+          <a href="sejarah-pramuka.html">Sejarah Singkat Pramuka</a>
+        </div>
+      </li>
+      <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
+      <li class="dropdown">
+        <a href="#" class="active">Galeri ▾</a>
+        <div class="dropdown-content">
+          <a href="gladian.html">Gladian</a>
+          <a href="program-kerja.html">Program Kerja</a>
+          <a href="kegiatan-partisipasi.html" class="active">Kegiatan Partisipasi</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Form Search Standar Baku -->
+    <div class="search-container">
+      <form action="#" method="GET">
+        <input type="text" placeholder="Search" name="query" required>
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="container">
+    <div class="page-title">
+      <h1>Kegiatan Partisipasi</h1>
+      <p>Dokumentasi keikutsertaan Ambalan Pagusti dalam berbagai event, lomba, dan kegiatan luar pangkalan</p>
+    </div>
+
+    <!-- Grid Kegiatan Partisipasi -->
+    <div class="partisipasi-grid">
+      
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>1. Raimuna Cabang / Daerah</h3>
+          <p>Keikutsertaan kontingen Ambalan Pagusti dalam ajang pertemuan besar Pramuka Penegak dan Pandega tingkat cabang maupun daerah sebagai wadah persaudaraan dan peningkatan wawasan.</p>
+        </div>
+        <img src="partisipasi-raimuna.jpg" alt="Dokumentasi Raimuna" class="partisipasi-img">
+      </div>
+
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>2. Lomba LCTP & Penegak Tangguh</h3>
+          <p>Ajang kompetisi Lomba Cepat Tangkas Pramuka dan ketangkasan antar penegak se-Kabupaten/Karesidenan untuk menguji keterampilan teknik kepramukaan serta pengetahuan umum.</p>
+        </div>
+        <img src="partisipasi-lctp.jpg" alt="Dokumentasi LCTP" class="partisipasi-img">
+      </div>
+
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>3. Karya Bakti Lebaran (KBL)</h3>
+          <p>Partisipasi aktif anggota ambalan bersama Saka Bhayangkara dan Kwarcab dalam membantu kelancaran serta keamanan arus mudik dan balik Hari Raya Idul Fitri.</p>
+        </div>
+        <img src="partisipasi-kbl.jpg" alt="Dokumentasi Karya Bakti Lebaran" class="partisipasi-img">
+      </div>
+
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>4. Pertemuan & Gladian Kwarcab Klaten</h3>
+          <p>Kehadiran perwakilan dewan ambalan dalam forum musyawarah, rapat koordinasi, serta pelatihan tingkat Kwarcab Klaten guna mempererat sinergi antar pangkalan.</p>
+        </div>
+        <img src="partisipasi-kwarcab.jpg" alt="Dokumentasi Pertemuan Kwarcab" class="partisipasi-img">
+      </div>
+
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>5. Aksi Penanaman Pohon & Penghijauan</h3>
+          <p>Kegiatan kolaborasi dengan komunitas lingkungan lokal dalam rangka aksi kepedulian alam, penanaman bibit pohon, dan kampanye kelestarian lingkungan hidup.</p>
+        </div>
+        <img src="partisipasi-penghijauan.jpg" alt="Dokumentasi Penghijauan" class="partisipasi-img">
+      </div>
+
+      <div class="partisipasi-card">
+        <div class="partisipasi-content">
+          <h3>6. Upacara Peringatan Hari Besar Nasional</h3>
+          <p>Keikutsertaan pasukan Ambalan Pagusti sebagai petugas maupun peserta dalam upacara peringatan Hari Kemerdekaan RI, Hari Sumpah Pemuda, dan Hari Pahlawan.</p>
+        </div>
+        <img src="partisipasi-upacara.jpg" alt="Dokumentasi Upacara Peringatan" class="partisipasi-img">
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Standar -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Pangkalan</h3>
+        <p>
+          <strong>GUDEP 26-051/26-052</strong><br>
+          SMK NEGERI 1 KLATEN<br>
+          Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Lokasi</h3>
+        <iframe 
+          class="footer-maps" 
+          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Sosmed</h3>
+        <div class="footer-links-container">
+          <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-youtube.png" alt="YouTube">
+            <span>Youtube</span>
+          </a>
+          <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-tiktok.png" alt="TikTok">
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
