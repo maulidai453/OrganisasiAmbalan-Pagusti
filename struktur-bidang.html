@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Struktur Bidang - Ambalan Pagusti</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f1ea; color: #333; }
+
+    /* Navbar Standard */
+    .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 35px; width: auto; object-fit: contain; }
+    .logo a { color: #fff; font-size: 1.4rem; font-weight: bold; text-decoration: none; }
+    .nav-links { list-style: none; display: flex; align-items: center; }
+    .nav-links li { margin: 0 5px; position: relative; }
+    .nav-links a { color: #d7ccc8; text-decoration: none; padding: 8px 12px; display: block; border-radius: 4px; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background-color: #5d4037; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
+    .dropdown-content a:hover { background-color: #5d4037; }
+
+    /* Search Form Standard */
+    .search-container form { display: flex; }
+    .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
+    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+
+    /* Container Utama */
+    .container { max-width: 950px; margin: 40px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 30px; color: #3e2723; }
+    .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
+
+    /* Foto Bagan Struktur Organisasi */
+    .bagan-container {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      background: #fff;
+      padding: 10px;
+    }
+    .bagan-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* Judul Bagian Penjelasan */
+    .sub-title {
+      color: #3e2723;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #ff9800;
+    }
+
+    /* Grid Kartu Bidang */
+    .bidang-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .bidang-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid #3e2723;
+    }
+    .bidang-card h3 {
+      color: #3e2723;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bidang-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .tugas-list {
+      margin-left: 18px;
+      color: #444;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .tugas-list li {
+      margin-bottom: 6px;
+    }
+
+    /* Footer Standard */
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+    .footer-section { flex: 1; min-width: 220px; }
+    .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
+    .footer-section p { line-height: 1.6; }
+    .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
+
+    .footer-links-container { display: flex; flex-direction: column; gap: 12px; }
+    .footer-sosmed-item { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800; }
+    .footer-sosmed-item img { width: 22px; height: 22px; object-fit: contain; }
+
+    .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    @media (max-width: 768px) {
+      .bidang-grid { grid-template-columns: repeat(1, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo-tunaskelapa.png" alt="Logo Tunas Kelapa">
+      <img src="logo-pagusti.png" alt="Logo Pagusti">
+      <a href="index.html">Ambalan Pagusti</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Beranda</a></li>
+      <li class="dropdown">
+        <a href="#">Profil ▾</a>
+        <div class="dropdown-content">
+          <a href="tentang-kami.html">Tentang Kami</a>
+          <a href="makna-logo.html">Makna Logo</a>
+          <a href="sejarah-pramuka.html">Sejarah Singkat Pramuka</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Kepengurusan ▾</a>
+        <div class="dropdown-content">
+          <a href="struktur-bidang.html">Struktur Bidang</a>
+          <a href="anggota.html">Anggota</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Galeri ▾</a>
+        <div class="dropdown-content">
+          <a href="gladian.html">Gladian</a>
+          <a href="program-kerja.html">Program Kerja</a>
+          <a href="kegiatan-partisipasi.html">Kegiatan Partisipasi</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="search-container">
+      <form action="#" method="GET">
+        <input type="text" placeholder="Search" name="query" required>
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="container">
+    <div class="page-title">
+      <h1>Struktur Bidang Ambalan Pagusti</h1>
+    </div>
+
+    <!-- 1. BAGAN STRUKTUR ORGANISASI (FOTO BAGAN KAMU) -->
+    <div class="bagan-container">
+      <img src="bagan-struktur.jpg" alt="Bagan Struktur Organisasi Ambalan Pagusti">
+    </div>
+
+    <!-- 2. PENJELASAN TUGAS MASING-MASING BIDANG -->
+    <h2 class="sub-title">Tugas dan Tanggung Jawab Bidang</h2>
+
+    <div class="bidang-grid">
+      
+      <!-- Bidang 1: Badan Pengurus Harian (BPH) -->
+      <div class="bidang-card">
+        <h3>📌 Badan Pengurus Harian (BPH)</h3>
+        <p>Terdiri dari Pradana, Kerani (Sekretaris), dan Juru Uang (Bendahara) yang memimpin dan mengoordinasikan seluruh roda organisasi ambalan.</p>
+        <ul class="tugas-list">
+          <li>Mengatur arah kebijakan dan program kerja ambalan.</li>
+          <li>Mengatur administrasi, surat-menyurat, dan pengarsipan berkas.</li>
+          <li>Mengelola keuangan dan penganggaran kegiatan ambalan.</li>
+        </ul>
+      </div>
+
+      <!-- Bidang 2: Giat Operasional (Giattang) -->
+      <div class="bidang-card">
+        <h3>🎯 Bidang Giat Operasional (Giattang)</h3>
+        <p>Bertanggung jawab atas perencanaan, penyusunan, dan pelaksanaan seluruh agenda serta kegiatan kepramukaan ambalan.</p>
+        <ul class="tugas-list">
+          <li>Menyusun jadwal dan konsep latihan rutin ambalan.</li>
+          <li>Mengonsep kegiatan besar seperti Gladian, Pelantikan, dan Kemah.</li>
+          <li>Mengatur alur teknis pelaksanaan lapangan saat kegiatan berlangsung.</li>
+        </ul>
+      </div>
+
+      <!-- Bidang 3: Teknik Kepramukaan (Tekpram) -->
+      <div class="bidang-card">
+        <h3>🏕️ Bidang Teknik Kepramukaan (Tekpram)</h3>
+        <p>Berfokus pada pengembangan materi, keterampilan fisik, ketangkasan, dan teknik kepramukaan seluruh anggota ambalan.</p>
+        <ul class="tugas-list">
+          <li>Menyiapkan materi kepramukaan (PBB, Semapor, Sandi, Pionering).</li>
+          <li>Melatih keterampilan teknik lapangan seluruh anggota Penegak.</li>
+          <li>Mempersiapkan kontingen untuk perlombaan kepramukaan (LCTP, dll).</li>
+        </ul>
+      </div>
+
+      <!-- Bidang 4: Evaluasi & Pengembangan (Evbang) -->
+      <div class="bidang-card">
+        <h3>📊 Bidang Evaluasi & Pengembangan (Evbang)</h3>
+        <p>Bertugas mengawasi perkembangan anggota, menilai keberhasilan kegiatan, serta menjaga kedisiplinan organisasi.</p>
+        <ul class="tugas-list">
+          <li>Memantau dan mengevaluasi pelaksanaan setiap program kerja.</li>
+          <li>Mengelola proses pencapaian SKO/TKU dan SKK anggota Penegak.</li>
+          <li>Menjaga kedisiplinan dan tata tertib internal ambalan.</li>
+        </ul>
+      </div>
+
+      <!-- Bidang 5: Hubungan Masyarakat (Humas) -->
+      <div class="bidang-card">
+        <h3>📢 Bidang Hubungan Masyarakat (Humas)</h3>
+        <p>Menjadi jembatan komunikasi antara ambalan dengan pihak sekolah, kwarcab/kwarran, ambalan lain, serta media sosial ambalan.</p>
+        <ul class="tugas-list">
+          <li>Mengelola media sosial resmi ambalan (Instagram, YouTube, TikTok).</li>
+          <li>Dokumentasi foto dan video dalam setiap event ambalan.</li>
+          <li>Menjalin hubungan baik dan kerja sama antar pangkalan/organisasi luar.</li>
+        </ul>
+      </div>
+
+      <!-- Bidang 6: Kerohanian / Adat -->
+      <div class="bidang-card">
+        <h3>🕊️ Bidang Kerohanian & Pemangku Adat</h3>
+        <p>Bertanggung jawab dalam pembinaan mental rohani anggota serta menjaga kelestarian adat dan etika ambalan.</p>
+        <ul class="tugas-list">
+          <li>Memimpin doa dan kegiatan keagamaan di setiap awal/akhir latihan.</li>
+          <li>Menjaga dan menjalankan hukum adat Ambalan Pagusti.</li>
+          <li>Memimpin jalannya upacara adat ambalan dan prosesi pendaftaran/pelantikan.</li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Standar -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Pangkalan</h3>
+        <p>
+          <strong>GUDEP 26-051/26-052</strong><br>
+          SMK NEGERI 1 KLATEN<br>
+          Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Lokasi</h3>
+        <iframe 
+          class="footer-maps" 
+          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Sosmed</h3>
+        <div class="footer-links-container">
+          <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-youtube.png" alt="YouTube">
+            <span>Youtube</span>
+          </a>
+          <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-tiktok.png" alt="TikTok">
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
