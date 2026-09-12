@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anggota - Ambalan Pagusti</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f1ea; color: #333; }
+
+    /* Navbar */
+    .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 35px; width: auto; object-fit: contain; }
+    .logo a { color: #fff; font-size: 1.4rem; font-weight: bold; text-decoration: none; }
+    .nav-links { list-style: none; display: flex; align-items: center; }
+    .nav-links li { margin: 0 5px; position: relative; }
+    .nav-links a { color: #d7ccc8; text-decoration: none; padding: 8px 12px; display: block; border-radius: 4px; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; background-color: #5d4037; }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
+    .dropdown-content a:hover { background-color: #5d4037; }
+    
+    /* Search Form Standard */
+    .search-container form { display: flex; }
+    .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
+    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+
+    /* Container Utama */
+    .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .page-title { text-align: center; margin-bottom: 35px; color: #3e2723; }
+    .page-title h1 { font-size: 2rem; margin-bottom: 8px; }
+
+    /* Grid Anggota (4 kolom di layar laptop/PC) */
+    .anggota-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .anggota-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .anggota-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    }
+
+    .anggota-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .anggota-info {
+      padding: 12px 10px;
+      background-color: #fff;
+    }
+
+    .anggota-info h4 {
+      color: #3e2723;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .anggota-info p {
+      color: #777;
+      font-size: 0.85rem;
+    }
+
+    /* Footer Standard */
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+    .footer-section { flex: 1; min-width: 220px; }
+    .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
+    .footer-section p { line-height: 1.6; }
+    .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
+
+    .footer-links-container { display: flex; flex-direction: column; gap: 12px; list-style: none; padding: 0; margin: 0; }
+    .footer-sosmed-item { color: #d7ccc8 !important; text-decoration: none !important; display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .footer-sosmed-item:hover { color: #ff9800 !important; }
+    .footer-sosmed-item img { width: 22px; height: 22px; object-fit: contain; }
+
+    .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    /* Responsif untuk Tablet dan HP */
+    @media (max-width: 992px) {
+      .anggota-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .anggota-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 480px) {
+      .anggota-grid { grid-template-columns: repeat(1, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo-tunaskelapa.png" alt="Logo Tunas Kelapa">
+      <img src="logo-pagusti.png" alt="Logo Pagusti">
+      <a href="index.html">Ambalan Pagusti</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Beranda</a></li>
+      <li class="dropdown">
+        <a href="#">Profil ▾</a>
+        <div class="dropdown-content">
+          <a href="tentang-kami.html">Tentang Kami</a>
+          <a href="makna-logo.html">Makna Logo</a>
+          <a href="sejarah-pramuka.html">Sejarah Singkat Pramuka</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="active">Struktur Organisasi ▾</a>
+        <div class="dropdown-content">
+          <a href="kepengurusan.html">Kepengurusan</a>
+          <a href="struktur-bidang.html">Struktur Bidang</a>
+          <a href="anggota.html" class="active">Anggota</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Galeri ▾</a>
+        <div class="dropdown-content">
+          <a href="gladian.html">Gladian</a>
+          <a href="program-kerja.html">Program Kerja</a>
+          <a href="kegiatan-partisipasi.html">Kegiatan Partisipasi</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="search-container">
+      <form action="#" method="GET">
+        <input type="text" placeholder="Search" name="query" required>
+        <button type="submit">🔍</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Konten Utama -->
+  <main class="container">
+    <div class="page-title">
+      <h1>Daftar Anggota Ambalan Pagusti</h1>
+    </div>
+
+    <!-- Grid 33 Kartu Anggota -->
+    <div class="anggota-grid">
+      
+      <!-- Anggota 1 -->
+      <div class="anggota-card">
+        <img src="anggota-1.jpg" alt="Foto Anggota 1" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 1</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 2 -->
+      <div class="anggota-card">
+        <img src="anggota-2.jpg" alt="Foto Anggota 2" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 2</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 3 -->
+      <div class="anggota-card">
+        <img src="anggota-3.jpg" alt="Foto Anggota 3" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 3</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 4 -->
+      <div class="anggota-card">
+        <img src="anggota-4.jpg" alt="Foto Anggota 4" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 4</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 5 -->
+      <div class="anggota-card">
+        <img src="anggota-5.jpg" alt="Foto Anggota 5" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 5</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 6 -->
+      <div class="anggota-card">
+        <img src="anggota-6.jpg" alt="Foto Anggota 6" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 6</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 7 -->
+      <div class="anggota-card">
+        <img src="anggota-7.jpg" alt="Foto Anggota 7" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 7</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 8 -->
+      <div class="anggota-card">
+        <img src="anggota-8.jpg" alt="Foto Anggota 8" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 8</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 9 -->
+      <div class="anggota-card">
+        <img src="anggota-9.jpg" alt="Foto Anggota 9" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 9</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 10 -->
+      <div class="anggota-card">
+        <img src="anggota-10.jpg" alt="Foto Anggota 10" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 10</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 11 -->
+      <div class="anggota-card">
+        <img src="anggota-11.jpg" alt="Foto Anggota 11" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 11</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 12 -->
+      <div class="anggota-card">
+        <img src="anggota-12.jpg" alt="Foto Anggota 12" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 12</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 13 -->
+      <div class="anggota-card">
+        <img src="anggota-13.jpg" alt="Foto Anggota 13" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 13</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 14 -->
+      <div class="anggota-card">
+        <img src="anggota-14.jpg" alt="Foto Anggota 14" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 14</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 15 -->
+      <div class="anggota-card">
+        <img src="anggota-15.jpg" alt="Foto Anggota 15" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 15</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 16 -->
+      <div class="anggota-card">
+        <img src="anggota-16.jpg" alt="Foto Anggota 16" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 16</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 17 -->
+      <div class="anggota-card">
+        <img src="anggota-17.jpg" alt="Foto Anggota 17" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 17</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 18 -->
+      <div class="anggota-card">
+        <img src="anggota-18.jpg" alt="Foto Anggota 18" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 18</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 19 -->
+      <div class="anggota-card">
+        <img src="anggota-19.jpg" alt="Foto Anggota 19" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 19</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 20 -->
+      <div class="anggota-card">
+        <img src="anggota-20.jpg" alt="Foto Anggota 20" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 20</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 21 -->
+      <div class="anggota-card">
+        <img src="anggota-21.jpg" alt="Foto Anggota 21" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 21</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 22 -->
+      <div class="anggota-card">
+        <img src="anggota-22.jpg" alt="Foto Anggota 22" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 22</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 23 -->
+      <div class="anggota-card">
+        <img src="anggota-23.jpg" alt="Foto Anggota 23" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 23</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 24 -->
+      <div class="anggota-card">
+        <img src="anggota-24.jpg" alt="Foto Anggota 24" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 24</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 25 -->
+      <div class="anggota-card">
+        <img src="anggota-25.jpg" alt="Foto Anggota 25" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 25</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 26 -->
+      <div class="anggota-card">
+        <img src="anggota-26.jpg" alt="Foto Anggota 26" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 26</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 27 -->
+      <div class="anggota-card">
+        <img src="anggota-27.jpg" alt="Foto Anggota 27" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 27</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 28 -->
+      <div class="anggota-card">
+        <img src="anggota-28.jpg" alt="Foto Anggota 28" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 28</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 29 -->
+      <div class="anggota-card">
+        <img src="anggota-29.jpg" alt="Foto Anggota 29" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 29</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 30 -->
+      <div class="anggota-card">
+        <img src="anggota-30.jpg" alt="Foto Anggota 30" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 30</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 31 -->
+      <div class="anggota-card">
+        <img src="anggota-31.jpg" alt="Foto Anggota 31" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 31</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 32 -->
+      <div class="anggota-card">
+        <img src="anggota-32.jpg" alt="Foto Anggota 32" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 32</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+      <!-- Anggota 33 -->
+      <div class="anggota-card">
+        <img src="anggota-33.jpg" alt="Foto Anggota 33" class="anggota-img">
+        <div class="anggota-info">
+          <h4>Nama Anggota 33</h4>
+          <p>Jabatan / Bidang</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Standar -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3 class="footer-title">Pangkalan</h3>
+        <p>
+          <strong>GUDEP 26-051/26-052</strong><br>
+          SMK NEGERI 1 KLATEN<br>
+          Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Lokasi</h3>
+        <iframe 
+          class="footer-maps" 
+          src="https://maps.google.com/maps?q=-7.695761,110.604510&z=16&output=embed" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="footer-section">
+        <h3 class="footer-title">Sosmed</h3>
+        <div class="footer-links-container">
+          <a href="https://www.youtube.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-youtube.png" alt="YouTube">
+            <span>Youtube</span>
+          </a>
+          <a href="https://www.instagram.com/ambalan_pagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-instagram.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@ambalanpagusti" target="_blank" rel="noopener noreferrer" class="footer-sosmed-item">
+            <img src="logo-tiktok.png" alt="TikTok">
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2026 AMBALAN PAGUSTI - SMKN 1 KLATEN. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
