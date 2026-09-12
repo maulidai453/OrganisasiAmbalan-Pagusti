@@ -97,44 +97,17 @@
     }
 
     /* Footer Standard */
-    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 60px; font-size: 0.95rem; }
-    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
-    .footer-section { flex: 1; min-width: 220px; }
+    footer { background-color: #2b2b2b; color: #d7ccc8; padding: 40px 20px 20px 20px; margin-top: 50px; font-size: 0.95rem; }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-section { flex: 1; min-width: 280px; }
     .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 15px; border-left: 4px solid #ff9800; padding-left: 10px; }
-    .footer-section p { line-height: 1.6; }
-    .footer-maps { width: 100%; height: 150px; border: none; border-radius: 6px; margin-top: 5px; }
-
-/* Styling Khusus Bagian Sosmed Footer */
-.footer-links-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none; /* MENGHILANGKAN TITIK BULLET (•) */
-  padding: 0;
-  margin: 0;
-}
-
-.footer-sosmed-item {
-  color: #d7ccc8 !important; /* Warna teks krem terang */
-  text-decoration: none !important; /* Menghilangkan garis bawah link */
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.95rem;
-}
-
-.footer-sosmed-item:hover {
-  color: #ff9800 !important; /* Warna berubah oranye saat di-hover */
-}
-
-.footer-sosmed-item img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-    
+    .footer-section p { line-height: 1.6; margin-bottom: 12px; }
+    .footer-maps { width: 100%; height: 160px; border: none; border-radius: 6px; margin-top: 5px; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .footer-links a:hover { color: #ff9800; }
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
-
     @media (max-width: 768px) {
       .bidang-grid { grid-template-columns: repeat(1, 1fr); }
       .nav-links { display: none; }
@@ -177,12 +150,13 @@
       </li>
     </ul>
 
-    <div class="search-container">
-      <form action="#" method="GET">
-        <input type="text" placeholder="Cari di sini..." name="query" required>
-        <button type="submit">🔍</button>
-      </form>
-    </div>
+  <div class="search-container" style="position: relative;">
+  <form onsubmit="searchWebsite(event)">
+    <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
+    <button type="submit" class="search-btn">🔍</button>
+  </form>
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
   </nav>
 
   <!-- Konten Utama -->
