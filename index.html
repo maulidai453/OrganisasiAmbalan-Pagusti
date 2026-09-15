@@ -115,14 +115,13 @@
     .footer-links a:hover { color: #ff9800; }
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
 
-    /* 1. Mencegah layar HP bisa digeser/bocor ke kanan */
+/* --- 1. SETTING DASAR Supaya Tidak Bocor ke Samping --- */
 html, body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
-/* 2. Memastikan semua gambar dan kontainer tidak melebih layar */
 img, iframe, video {
   max-width: 100%;
   height: auto;
@@ -132,49 +131,72 @@ img, iframe, video {
   box-sizing: border-box;
 }
 
-/* 3. Penyesuaian Khusus Tampilan HP (Layar di bawah 768px) */
+/* --- 2. SETTING HAMBURGER MENU (Sembunyi di Laptop) --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* --- 3. KHUSUS TAMPILAN HP (Ganti @media lama dengan ini) --- */
 @media (max-width: 768px) {
-  
-  /* Container utama menyesuaikan lebar HP */
-  .container, .footer-container {
-    width: 90% !important;
-    padding: 0 10px !important;
+  /* Munculkan tombol garis 3 */
+  .menu-toggle {
+    display: block;
   }
 
-  /* Ukuran judul di banner hero supaya tidak kegedean di HP */
-  .hero h1, .hero-content h1 {
-    font-size: 1.5rem !important;
-    line-height: 1.3;
-  }
-
-  /* Banner hero menyesuaikan tinggi HP */
-  .hero, .hero-container {
-    min-height: 350px !important;
-    height: auto !important;
-    padding: 40px 15px !important;
-  }
-
-  /* Navbar dan menu agar rapi di HP */
   .navbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 15px;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 15px 20px;
   }
 
+  /* Sembunyikan daftar menu sebelum tombol diklik */
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
+    display: none; 
+    flex-direction: column;
+    width: 100%;
+    background-color: #3e2723;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1001;
+  }
+
+  /* Munculkan menu saat tombol diklik (diatur via JavaScript) */
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: left;
+    margin: 0;
   }
 
   .nav-links a {
-    padding: 5px 8px;
-    font-size: 0.85rem;
+    padding: 12px 20px;
+    border-bottom: 1px solid #5d4037;
   }
 
-  .search-container {
-    width: 100%;
-    justify-content: center;
+  /* Penyesuaian Sub-menu / Dropdown di HP */
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: #2c1b18;
+    padding-left: 15px;
+  }
+
+  /* Penyesuaian Ukuran Judul Banner Hero di HP */
+  .hero h1, .hero-content h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
   }
 }
   </style>
@@ -187,7 +209,10 @@ img, iframe, video {
       <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
-    <ul class="nav-links">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+    ☰
+  </button>
+    <ul class="nav-links"id="navLinks">
       <li><a href="index.html" class="active">Beranda</a></li>
       <li class="dropdown">
         <a href="#">Profil ▾</a>
@@ -337,6 +362,15 @@ img, iframe, video {
       document.getElementById('searchSuggestions').style.display = 'none';
     }
   });
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    // Fungsi klik tombol garis 3
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
 </script>
 </body>
 </html>
