@@ -136,7 +136,7 @@ img, iframe, video {
   display: none !important; /* Tombol garis 3 tersembunyi di laptop */
 }
 
-/* --- 3. TAMPILAN HP (MOBILE) --- */
+/* --- TAMPILAN HP (MOBILE) --- */
 @media (max-width: 768px) {
   .navbar {
     display: flex !important;
@@ -147,22 +147,19 @@ img, iframe, video {
     z-index: 99999 !important;
   }
 
-  /* Sembunyikan kotak centang HTML */
-  #menu-toggle-checkbox {
-    display: none !important;
-  }
-
-  /* BIKIN TOMBOL GARIS 3 RATA KANAN & JELAS */
-  .menu-toggle-btn {
+  /* BIKIN GARIS 3 MURNI DI POJOK KANAN */
+  .menu-toggle {
     display: block !important;
+    background: transparent !important;
+    border: none !important;
     color: #ffffff !important;
     font-size: 2rem !important;
     cursor: pointer !important;
-    margin-left: auto !important; /* Dorong ke pojok kanan */
-    user-select: none !important;
+    margin-left: auto !important;
+    outline: none !important;
   }
 
-  /* SEMBUNYIKAN MENU SEBELUM GARIS 3 DIKLIK */
+  /* MENYEMBUNYIKAN MENU SEBELUM DIKLIK */
   .navbar .nav-links {
     display: none !important;
     flex-direction: column !important;
@@ -176,8 +173,8 @@ img, iframe, video {
     z-index: 999999 !important;
   }
 
-  /* BUKA MENU SAAT GARIS 3 DIKLIK (CHECKBOX TERCENTANG) */
-  #menu-toggle-checkbox:checked ~ .nav-links {
+  /* MUNCULKAN MENU KETIKA GARIS 3 DIKLIK */
+  .navbar .nav-links.active-menu {
     display: flex !important;
   }
 
@@ -194,18 +191,20 @@ img, iframe, video {
     display: block !important;
   }
 
-  /* Sub-menu (Profil, Kepengurusan, Galeri) Otomatis Terbuka */
+  /* MENAMPILKAN SEMUA SUB-MENU (Tentang Kami, Makna Logo, dll.) */
   .dropdown-content {
     position: static !important;
-    display: block !important;
+    display: block !important; /* Paksa langsung terbuka di HP */
     box-shadow: none !important;
     background-color: #2c1b18 !important;
     padding-left: 20px !important;
   }
 
-  .hero h1, .hero-content h1 {
-    font-size: 1.5rem !important;
-    line-height: 1.3;
+  .dropdown-content a {
+    padding: 10px 20px !important;
+    color: #d7ccc8 !important;
+    font-size: 0.95rem !important;
+    border-bottom: 1px solid #422b27 !important;
   }
 
   .search-container {
@@ -222,8 +221,6 @@ img, iframe, video {
       <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
-<!-- Checkbox Tersembunyi untuk Sakelar Tombol -->
-  <input type="checkbox" id="menu-toggle-checkbox">
   
   <!-- Tombol Garis Tiga -->
   <label for="menu-toggle-checkbox" class="menu-toggle-btn">☰</label>
