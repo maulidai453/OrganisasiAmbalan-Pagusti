@@ -136,27 +136,33 @@ img, iframe, video {
   display: none !important; /* Tombol garis 3 tersembunyi di laptop */
 }
 
+/* --- 3. TAMPILAN HP (MOBILE) --- */
 @media (max-width: 768px) {
   .navbar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     position: relative !important;
+    padding: 15px 20px !important;
     z-index: 99999 !important;
   }
 
-  /* Styling Tombol Garis Tiga */
-  .menu-toggle {
+  /* Sembunyikan kotak centang HTML */
+  #menu-toggle-checkbox {
+    display: none !important;
+  }
+
+  /* BIKIN TOMBOL GARIS 3 RATA KANAN & JELAS */
+  .menu-toggle-btn {
     display: block !important;
-    background: transparent !important;
-    border: none !important;
     color: #ffffff !important;
     font-size: 2rem !important;
     cursor: pointer !important;
-    margin-left: auto !important;
+    margin-left: auto !important; /* Dorong ke pojok kanan */
+    user-select: none !important;
   }
 
-  /* Sembunyikan Menu Sebelum Diklik */
+  /* SEMBUNYIKAN MENU SEBELUM GARIS 3 DIKLIK */
   .navbar .nav-links {
     display: none !important;
     flex-direction: column !important;
@@ -170,14 +176,15 @@ img, iframe, video {
     z-index: 999999 !important;
   }
 
-  /* Tampilkan Menu Saat Class active-menu Dipanggil */
-  .navbar .nav-links.active-menu {
+  /* BUKA MENU SAAT GARIS 3 DIKLIK (CHECKBOX TERCENTANG) */
+  #menu-toggle-checkbox:checked ~ .nav-links {
     display: flex !important;
   }
 
   .nav-links li {
     width: 100% !important;
     text-align: left !important;
+    margin: 0 !important;
   }
 
   .nav-links a {
@@ -187,7 +194,7 @@ img, iframe, video {
     display: block !important;
   }
 
-  /* Tampilkan Sub-Menu Lengkap */
+  /* Sub-menu (Profil, Kepengurusan, Galeri) Otomatis Terbuka */
   .dropdown-content {
     position: static !important;
     display: block !important;
@@ -196,11 +203,9 @@ img, iframe, video {
     padding-left: 20px !important;
   }
 
-  .dropdown-content a {
-    padding: 10px 20px !important;
-    color: #d7ccc8 !important;
-    font-size: 0.95rem !important;
-    border-bottom: 1px solid #3e2723 !important;
+  .hero h1, .hero-content h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
   }
 
   .search-container {
@@ -376,14 +381,7 @@ img, iframe, video {
     }
   });
 
-</script>
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active-menu');
-    });
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active-menu')">☰</button>
   </script>
 </body>
 </html>
