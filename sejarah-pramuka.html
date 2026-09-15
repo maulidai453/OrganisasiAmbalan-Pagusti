@@ -19,71 +19,71 @@
     .dropdown-content { display: none; position: absolute; background-color: #3e2723; min-width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); border-radius: 4px; top: 100%; left: 0; }
     .search-container form { display: flex; }
     .search-container input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; outline: none; }
-    .search-container button { padding: 6px 10px; border: none; background-color: #d7ccc8; cursor: pointer; border-radius: 0 4px 4px 0; }
+
     .search-suggestions {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #ffffff;
-  border-radius: 0 0 6px 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  z-index: 1000;
-  overflow: hidden;
-}
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      overflow: hidden;
+    }
 
-.suggestion-item {
-  padding: 10px 14px;
-  color: #333;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  border-bottom: 1px solid #eee;
-  transition: background 0.2s;
-}
+    .suggestion-item {
+      padding: 10px 14px;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s;
+    }
 
-.suggestion-item:last-child {
-  border-bottom: none;
-}
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
 
-.suggestion-item:hover {
-  background-color: #f5f5f5;
-  color: #3e2723;
-}
+    .suggestion-item:hover {
+      background-color: #f5f5f5;
+      color: #3e2723;
+    }
 
-.suggestion-tag {
-  font-size: 0.75rem;
-  background: #efebe9;
-  color: #5d4037;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
+    .suggestion-tag {
+      font-size: 0.75rem;
+      background: #efebe9;
+      color: #5d4037;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
 
-    /* Styling tombol search pakai emoji 🔍 agar estetik */
-.search-btn {
-  background-color: #5d4037; /* Warna cokelat pramuka */
-  border: none;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 0 6px 6px 0;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s, transform 0.1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .search-btn {
+      background-color: #5d4037;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.search-btn:hover {
-  background-color: #3e2723; /* Cokelat lebih gelap saat di-hover */
-}
+    .search-btn:hover {
+      background-color: #3e2723;
+    }
 
-.search-btn:active {
-  transform: scale(0.92); /* Efek membal pas diklik */
-}
+    .search-btn:active {
+      transform: scale(0.92);
+    }
+
     .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
     .card { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .card h3 { color: #3e2723; margin-top: 10px; margin-bottom: 5px; }
@@ -101,6 +101,82 @@
     .footer-links a { color: #d7ccc8; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
     .footer-links a:hover { color: #ff9800; }
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
+
+    /* --- SETTING RESPONSIVE HP --- */
+    html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+    img, iframe, video { max-width: 100%; height: auto; }
+
+    .menu-toggle-btn { display: none; }
+    #menu-toggle-checkbox { display: none; }
+
+    @media (max-width: 768px) {
+      .navbar {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        position: relative !important;
+        padding: 15px 20px !important;
+        z-index: 99999 !important;
+      }
+
+      .menu-toggle-btn {
+        display: block !important;
+        color: #ffffff !important;
+        font-size: 2rem !important;
+        cursor: pointer !important;
+        margin-left: auto !important;
+        user-select: none !important;
+      }
+
+      .navbar .nav-links {
+        display: none !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        background-color: #3e2723 !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        padding: 10px 0 !important;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.5) !important;
+        z-index: 999999 !important;
+      }
+
+      #menu-toggle-checkbox:checked ~ .nav-links {
+        display: flex !important;
+      }
+
+      .nav-links li {
+        width: 100% !important;
+        text-align: left !important;
+        margin: 0 !important;
+      }
+
+      .nav-links a {
+        padding: 12px 20px !important;
+        border-bottom: 1px solid #5d4037 !important;
+        color: #ffffff !important;
+        display: block !important;
+      }
+
+      .dropdown-content {
+        position: static !important;
+        display: block !important;
+        box-shadow: none !important;
+        background-color: #2c1b18 !important;
+        padding-left: 20px !important;
+      }
+
+      .dropdown-content a {
+        padding: 10px 20px !important;
+        color: #d7ccc8 !important;
+        font-size: 0.95rem !important;
+        border-bottom: 1px solid #3e2723 !important;
+      }
+
+      .search-container {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -111,6 +187,11 @@
       <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
+
+    <!-- SAKELAR GARIS TIGA HYBRID (HP) -->
+    <input type="checkbox" id="menu-toggle-checkbox">
+    <label for="menu-toggle-checkbox" class="menu-toggle-btn">☰</label>
+
     <ul class="nav-links">
       <li><a href="index.html">Beranda</a></li>
       <li class="dropdown">
@@ -127,7 +208,8 @@
           <a href="struktur-bidang.html">Struktur Bidang</a>
           <a href="anggota.html">Anggota</a>
         </div>
-      </li>      <li class="dropdown">
+      </li>
+      <li class="dropdown">
         <a href="#">Galeri ▾</a>
         <div class="dropdown-content">
           <a href="gladian.html">Gladian</a>
@@ -136,13 +218,14 @@
         </div>
       </li>
     </ul>
+
     <div class="search-container" style="position: relative;">
-  <form onsubmit="searchWebsite(event)">
-    <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
-    <button type="submit" class="search-btn">🔍</button>
-  </form>
-  <div id="searchSuggestions" class="search-suggestions"></div>
-</div>
+      <form onsubmit="searchWebsite(event)">
+        <input type="text" id="searchInput" placeholder="Cari di sini..." autocomplete="off" oninput="showSuggestions(this.value)">
+        <button type="submit" class="search-btn">🔍</button>
+      </form>
+      <div id="searchSuggestions" class="search-suggestions"></div>
+    </div>
   </nav>
 
   <main class="container">
@@ -167,26 +250,27 @@
           SMK NEGERI 1 KLATEN<br>
           Jl. dr. Wahidin Sudirohusodo No.22, Klaten, Jawa Tengah
         </p>
-        <iframe class="footer-maps" src="https://maps.google.com/maps?q=SMK%20Negeri%201%20Klaten&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>  
+        <iframe class="footer-maps" src="https://maps.google.com/maps?q=SMK%20Negeri%201%20Klaten&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>
       </div>
       <div class="footer-section">
         <h3 class="footer-title">Sosmed</h3>
         <ul class="footer-links">
-  <li>
-    <a href="https://youtube.com/@idpagusti8571?si=fcJ2fdGokhPrNgpj" target="_blank" rel="noopener noreferrer">
-      <img src="Youtube.png" alt="YouTube" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Youtube
-    </a>
-  </li>
-  <li>
-    <a href="https://www.instagram.com/id_pagusti?stkn=MW05OGhheXg2bWw3Nw==" target="_blank" rel="noopener noreferrer">
-      <img src="Instagram.png" alt="Instagram" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Instagram
-    </a>
-  </li>
-  <li>
-    <a href="https://www.tiktok.com/@id.pagusti?_r=1&_t=ZS-99VRMVjWHOG" target="_blank" rel="noopener noreferrer">
-      <img src="Tiktok.png" alt="TikTok" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> TikTok
-    </a>
-  </li>
+          <li>
+            <a href="https://youtube.com/@idpagusti8571?si=fcJ2fdGokhPrNgpj" target="_blank" rel="noopener noreferrer">
+              <img src="Youtube.png" alt="YouTube" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Youtube
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/id_pagusti?stkn=MW05OGhheXg2bWw3Nw==" target="_blank" rel="noopener noreferrer">
+              <img src="Instagram.png" alt="Instagram" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Instagram
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@id.pagusti?_r=1&_t=ZS-99VRMVjWHOG" target="_blank" rel="noopener noreferrer">
+              <img src="Tiktok.png" alt="TikTok" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> TikTok
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="footer-bottom">
@@ -196,68 +280,68 @@
 
   <script>document.addEventListener('contextmenu', e => e.preventDefault());</script>
   <script>
-  const siteData = [
-    { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
-    { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
-    { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
-    { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
-    { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
-    { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
-    { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
-    { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
-  ];
+    const siteData = [
+      { title: 'Visi & Misi', keywords: ['visi', 'misi', 'tentang', 'profil', 'pagusti'], url: 'tentang-kami.html', category: 'Profil' },
+      { title: 'Makna Logo Ambalan', keywords: ['logo', 'makna', 'arti', 'lambang'], url: 'makna-logo.html', category: 'Profil' },
+      { title: 'Sejarah Pramuka', keywords: ['sejarah', 'pramuka', 'baden powell'], url: 'sejarah-pramuka.html', category: 'Profil' },
+      { title: 'Struktur Organisasi', keywords: ['struktur', 'pengurus', 'pradana', 'pembina', 'dewan'], url: 'struktur-organisasi.html', category: 'Organisasi' },
+      { title: 'Dokumentasi Gladian', keywords: ['gladian', 'foto', 'latihan', 'rutin', 'galeri'], url: 'gladian.html', category: 'Galeri' },
+      { title: 'Program Kerja', keywords: ['prokerja', 'program kerja', 'agenda'], url: 'program-kerja.html', category: 'Galeri' },
+      { title: 'Kegiatan Partisipasi', keywords: ['partisipasi', 'lomba', 'event', 'kegiatan'], url: 'kegiatan-partisipasi.html', category: 'Galeri' },
+      { title: 'Beranda Utama', keywords: ['beranda', 'home', 'pangkalan', 'gudep', 'smkn 1 klaten'], url: 'index.html', category: 'Utama' }
+    ];
 
-  function showSuggestions(val) {
-    const input = val.trim().toLowerCase();
-    const box = document.getElementById('searchSuggestions');
-    box.innerHTML = '';
+    function showSuggestions(val) {
+      const input = val.trim().toLowerCase();
+      const box = document.getElementById('searchSuggestions');
+      box.innerHTML = '';
 
-    if (!input) {
-      box.style.display = 'none';
-      return;
+      if (!input) {
+        box.style.display = 'none';
+        return;
+      }
+
+      const matches = siteData.filter(item => 
+        item.title.toLowerCase().includes(input) || 
+        item.keywords.some(k => k.includes(input))
+      );
+
+      if (matches.length > 0) {
+        matches.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'suggestion-item';
+          div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
+          div.onclick = () => { window.location.href = item.url; };
+          box.appendChild(div);
+        });
+        box.style.display = 'block';
+      } else {
+        box.style.display = 'none';
+      }
     }
 
-    const matches = siteData.filter(item => 
-      item.title.toLowerCase().includes(input) || 
-      item.keywords.some(k => k.includes(input))
-    );
+    function searchWebsite(event) {
+      event.preventDefault();
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!query) return;
 
-    if (matches.length > 0) {
-      matches.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'suggestion-item';
-        div.innerHTML = `<span>${item.title}</span><span class="suggestion-tag">${item.category}</span>`;
-        div.onclick = () => { window.location.href = item.url; };
-        box.appendChild(div);
-      });
-      box.style.display = 'block';
-    } else {
-      box.style.display = 'none';
+      const match = siteData.find(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.keywords.some(k => k.includes(query) || query.includes(k))
+      );
+
+      if (match) {
+        window.location.href = match.url;
+      } else {
+        alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
+      }
     }
-  }
 
-  function searchWebsite(event) {
-    event.preventDefault();
-    const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    if (!query) return;
-
-    const match = siteData.find(item => 
-      item.title.toLowerCase().includes(query) || 
-      item.keywords.some(k => k.includes(query) || query.includes(k))
-    );
-
-    if (match) {
-      window.location.href = match.url;
-    } else {
-      alert('Halaman tidak ditemukan. Gunakan kata kunci seperti Visi, Gladian, atau Struktur.');
-    }
-  }
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.search-container')) {
-      document.getElementById('searchSuggestions').style.display = 'none';
-    }
-  });
-</script>
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-container')) {
+        document.getElementById('searchSuggestions').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
