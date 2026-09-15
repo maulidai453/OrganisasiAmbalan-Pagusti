@@ -115,7 +115,7 @@
     .footer-links a:hover { color: #ff9800; }
     .footer-bottom { text-align: center; border-top: 1px solid #444; margin-top: 30px; padding-top: 15px; font-size: 0.85rem; color: #aaa; }
 
-/* --- 1. SETTING DASAR Supaya Tidak Bocor ke Samping --- */
+/* --- 1. SETTING DASAR --- */
 html, body {
   width: 100%;
   max-width: 100%;
@@ -131,33 +131,31 @@ img, iframe, video {
   box-sizing: border-box;
 }
 
-/* --- 2. SETTING HAMBURGER MENU (Sembunyi di Laptop) --- */
+/* --- 2. TAMPILAN DESKTOP / LAPTOP --- */
 .menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.8rem;
-  cursor: pointer;
-  padding: 5px;
+  display: none !important; /* Tombol garis 3 tersembunyi di laptop */
 }
 
-/* --- 3. KHUSUS TAMPILAN HP (Ganti @media lama dengan ini) --- */
+/* --- 3. TAMPILAN HP (MOBILE) --- */
 @media (max-width: 768px) {
   /* Munculkan tombol garis 3 */
   .menu-toggle {
-    display: block;
+    display: block !important;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
   }
 
   .navbar {
-    flex-wrap: wrap;
     position: relative;
     padding: 15px 20px;
   }
 
-  /* Sembunyikan daftar menu sebelum tombol diklik */
-  .nav-links {
-    display: none; 
+  /* PAKSA sembunyikan daftar menu di HP saat belum diklik */
+  .navbar .nav-links {
+    display: none !important;
     flex-direction: column;
     width: 100%;
     background-color: #3e2723;
@@ -165,13 +163,13 @@ img, iframe, video {
     top: 100%;
     left: 0;
     padding: 10px 0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
     z-index: 1001;
   }
 
-  /* Munculkan menu saat tombol diklik (diatur via JavaScript) */
-  .nav-links.show {
-    display: flex;
+  /* PAKSA munculkan menu saat tombol diklik */
+  .navbar .nav-links.active-menu {
+    display: flex !important;
   }
 
   .nav-links li {
@@ -185,7 +183,6 @@ img, iframe, video {
     border-bottom: 1px solid #5d4037;
   }
 
-  /* Penyesuaian Sub-menu / Dropdown di HP */
   .dropdown-content {
     position: static;
     box-shadow: none;
@@ -193,10 +190,13 @@ img, iframe, video {
     padding-left: 15px;
   }
 
-  /* Penyesuaian Ukuran Judul Banner Hero di HP */
   .hero h1, .hero-content h1 {
     font-size: 1.5rem !important;
     line-height: 1.3;
+  }
+
+  .search-container {
+    display: none !important; /* Menyembunyikan pencarian di HP agar navbar ringkas */
   }
 }
   </style>
@@ -209,8 +209,7 @@ img, iframe, video {
       <img src="logo-pagusti.png" alt="Logo Pagusti">
       <a href="index.html">Ambalan Pagusti</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-    ☰
+    <button class="menu-toggle" id="menuToggle">☰</button>
   </button>
     <ul class="nav-links"id="navLinks">
       <li><a href="index.html" class="active">Beranda</a></li>
