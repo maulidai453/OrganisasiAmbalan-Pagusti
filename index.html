@@ -2,9 +2,22 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=1200, initial-scale=0.3, maximum-scale=3.0, user-scalable=yes">
   <title>Beranda - Ambalan Pagusti</title>
   <style>
+    /* Mencegah kontainer dan navbar jebol ke samping */
+html, body {
+  width: 100%;
+  min-width: 1200px; /* Samakan dengan angka viewport di atas */
+  overflow-x: auto;  /* Mengaktifkan geser/scroll samping jika dibutuhkan */
+}
+
+/* Memastikan navbar tidak terpotong */
+.navbar {
+  width: 100%;
+  min-width: 1200px; /* Menjaga navbar tetap sepanjang tampilan desktop */
+  box-sizing: border-box;
+}
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background-color: #f4f1ea; color: #333; }
     .navbar { background-color: #3e2723; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; position: sticky; top: 0; z-index: 1000; }
